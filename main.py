@@ -1,3 +1,4 @@
+import os
 import sys
 import time
 
@@ -9,6 +10,7 @@ from srt.srt import SRT
 
 from util import *
 
+version = '1.0.0'
 max_error_log = 20
 max_try_log = 100
 
@@ -53,6 +55,8 @@ class UiMainClass(QDialog):
         self.reservation_list = []
         self.reservation_idx = 0
 
+        self.db = load_db()
+
         QDialog.__init__(self)
         # UI 선언
         self.main_ui = Ui_dialog()
@@ -63,9 +67,21 @@ class UiMainClass(QDialog):
         self.show()
 
     def init_ui(self):
+        self.main_ui.label_version.setText(version)
         self.main_ui.label_srt_logged_in.hide()
 
         ### SRT ###
+        # db에 데이터가 있는 경우 불러오기
+        if 'srt_login_type' in self.db.keys():
+            if self.db['srt_login_type'] == 0 or self.db['srt_login_type'] == 1 or self.db['srt_login_type'] == 2:
+                self.main_ui.comboBox_srt_login_type.setCurrentIndex(self.db['srt_login_type'])
+        if 'srt_id' in self.db.keys():
+            self.main_ui.lineEdit_srt_id.setText(self.db['srt_id'])
+        if 'srt_pwd' in self.db.keys():
+            self.main_ui.lineEdit_srt_pwd.setText(self.db['srt_pwd'])
+        if 'save_login_info' in self.db.keys() and self.db['save_login_info']:
+            self.main_ui.checkBox_srt_save_login.setChecked(True)
+
         self.main_ui.comboBox_srt_adult.setCurrentIndex(1)
         self.main_ui.comboBox_srt_dpt_stn.addItems(self.srt_stations.keys())
         self.main_ui.comboBox_srt_arv_stn.addItems(self.srt_stations.keys())
@@ -97,6 +113,20 @@ class UiMainClass(QDialog):
             self.main_ui.groupBox_login.hide()
             self.main_ui.label_srt_logged_in.setText(f'로그인 계정 : {srt_id}')
             self.main_ui.label_srt_logged_in.show()
+
+            if self.main_ui.checkBox_srt_save_login.isChecked():
+                # 로그인 정보 저장
+                self.db['srt_login_type'] = login_type
+                self.db['srt_id'] = srt_id
+                self.db['srt_pwd'] = srt_pwd
+                self.db['save_login_info'] = True
+            else:
+                # 로그인 정보 삭제
+                self.db['srt_login_type'] = 0
+                self.db['srt_id'] = ''
+                self.db['srt_pwd'] = ''
+                self.db['save_login_info'] = False
+            save_db(self.db)
 
     def pushButton_srt_search_clicked(self):
         dptRsStnCdNm = self.main_ui.comboBox_srt_dpt_stn.currentText()

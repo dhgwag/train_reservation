@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>1191</width>
-    <height>987</height>
+    <height>889</height>
    </rect>
   </property>
   <property name="sizePolicy">
@@ -17,12 +17,42 @@
    </sizepolicy>
   </property>
   <property name="windowTitle">
-   <string>기차표 예매 프로그램</string>
+   <string>매진 기차표 예매</string>
   </property>
   <property name="sizeGripEnabled">
    <bool>false</bool>
   </property>
   <layout class="QVBoxLayout" name="verticalLayout_2">
+   <item>
+    <layout class="QHBoxLayout" name="horizontalLayout_18">
+     <property name="bottomMargin">
+      <number>0</number>
+     </property>
+     <item>
+      <widget class="QLabel" name="label">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+         <horstretch>1</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+       <property name="text">
+        <string>Contact : rhkrehdgns@gmail.com     Version : </string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLabel" name="label_version">
+       <property name="text">
+        <string>0.0.0</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </item>
    <item>
     <widget class="QTabWidget" name="tabWidget">
      <property name="sizePolicy">
@@ -124,6 +154,13 @@
                    </size>
                   </property>
                  </spacer>
+                </item>
+                <item>
+                 <widget class="QCheckBox" name="checkBox_srt_save_login">
+                  <property name="text">
+                   <string>로그인 정보 저장</string>
+                  </property>
+                 </widget>
                 </item>
                </layout>
               </widget>
