@@ -4,7 +4,7 @@ from PyQt5.QtCore import Qt, QThread, pyqtSignal
 from PyQt5.QtWidgets import QApplication, QDialog, QTableWidgetItem, QRadioButton, QWidget, QHBoxLayout, QMessageBox
 
 from design import Ui_dialog
-from srt.srt import SRT
+from train.srt import SRT
 
 from util import *
 
