@@ -1,5 +1,3 @@
-import os
-import sys
 import time
 
 from PyQt5.QtCore import Qt, QThread, pyqtSignal
@@ -232,6 +230,8 @@ class UiMainClass(QDialog):
 
             if not self.srt.is_logged_in():
                 self.error_callback('예매 실패', '로그인을 먼저 해주세요')
+                self.main_ui.groupBox_login.show()
+                self.main_ui.label_srt_logged_in.hide()
                 return False
             if adult + child + senior + svrDsb + mldDsb < 1:
                 self.error_callback('예매 실패', '인원을 선택해주세요')

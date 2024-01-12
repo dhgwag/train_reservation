@@ -14,7 +14,7 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 class Ui_dialog(object):
     def setupUi(self, dialog):
         dialog.setObjectName("dialog")
-        dialog.resize(1191, 889)
+        dialog.resize(1191, 987)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Maximum, QtWidgets.QSizePolicy.Maximum)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
@@ -87,6 +87,9 @@ class Ui_dialog(object):
         self.verticalWidget.setObjectName("verticalWidget")
         self.horizontalLayout_3 = QtWidgets.QHBoxLayout(self.verticalWidget)
         self.horizontalLayout_3.setObjectName("horizontalLayout_3")
+        self.label_2 = QtWidgets.QLabel(self.verticalWidget)
+        self.label_2.setObjectName("label_2")
+        self.horizontalLayout_3.addWidget(self.label_2)
         self.comboBox_srt_login_type = QtWidgets.QComboBox(self.verticalWidget)
         self.comboBox_srt_login_type.setObjectName("comboBox_srt_login_type")
         self.comboBox_srt_login_type.addItem("")
@@ -450,6 +453,7 @@ class Ui_dialog(object):
         self.label_version.setText(_translate("dialog", "0.0.0"))
         self.label_srt_logged_in.setText(_translate("dialog", "로그인 계정"))
         self.groupBox_login.setTitle(_translate("dialog", "로그인"))
+        self.label_2.setText(_translate("dialog", "로그인 방식"))
         self.comboBox_srt_login_type.setItemText(0, _translate("dialog", "회원번호"))
         self.comboBox_srt_login_type.setItemText(1, _translate("dialog", "이메일"))
         self.comboBox_srt_login_type.setItemText(2, _translate("dialog", "휴대전화"))

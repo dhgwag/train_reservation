@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>1191</width>
-    <height>889</height>
+    <height>987</height>
    </rect>
   </property>
   <property name="sizePolicy">
@@ -123,6 +123,13 @@
                 </sizepolicy>
                </property>
                <layout class="QHBoxLayout" name="horizontalLayout_3">
+                <item>
+                 <widget class="QLabel" name="label_2">
+                  <property name="text">
+                   <string>로그인 방식</string>
+                  </property>
+                 </widget>
+                </item>
                 <item>
                  <widget class="QComboBox" name="comboBox_srt_login_type">
                   <item>

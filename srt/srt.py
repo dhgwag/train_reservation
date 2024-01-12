@@ -340,6 +340,8 @@ class SRT:
             self.try_callback(False, "예약대기자 한도수 초과", detail_info)
         elif "20분 이내 열차는 예약" in confirm_res.text:
             self.try_callback(False, "20분 이내 열차 예약 불가", detail_info)
+        elif "일반최대 단체최소" in confirm_res.text:
+            self.try_callback(False, "인원 수 오류, 9명 이하만 예약 가능", detail_info)
         else:
             self.try_callback(False, "기타 사유", detail_info + confirm_res.text)
 
