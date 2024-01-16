@@ -9,7 +9,7 @@ from train.srt import SRT
 
 from util import *
 
-version = '3.0.0'
+version = '3.1.0'
 
 
 class SrtThread(QThread):
@@ -473,9 +473,9 @@ class UiMainClass(QDialog):
             self.srt_thread.stop()
             self.main_ui.pushButton_srt_reservation.setStyleSheet("QPushButton{background-color : lightblue;}")
             self.main_ui.pushButton_srt_reservation.setText('예매시작')
-            QMessageBox.about(self, 'SRT 예매 성공', '10분 내에 SRT 앱에서 결제해주세요')
 
             self.send_success_message('SRT 예매 성공\n\n10분 내에 SRT 앱에서 결제해주세요')
+            QMessageBox.about(self, 'SRT 예매 성공', '10분 내에 SRT 앱에서 결제해주세요')
 
     def srt_update_ctr(self, ctr):
         self.main_ui.lcdNumber_srt_ctr.display(ctr)
@@ -704,9 +704,9 @@ class UiMainClass(QDialog):
             self.ktx_thread.stop()
             self.main_ui.pushButton_ktx_reservation.setStyleSheet("QPushButton{background-color : lightblue;}")
             self.main_ui.pushButton_ktx_reservation.setText('예매시작')
-            QMessageBox.about(self, 'KTX 예매 성공', '20분 내에 KTX 홈페이지에서 결제해주세요')
 
             self.send_success_message('KTX 예매 성공\n\n20분 내에 KTX 홈페이지에서 결제해주세요')
+            QMessageBox.about(self, 'KTX 예매 성공', '20분 내에 KTX 홈페이지에서 결제해주세요')
 
     def ktx_update_ctr(self, ctr):
         self.main_ui.lcdNumber_ktx_ctr.display(ctr)
