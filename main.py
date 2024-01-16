@@ -9,9 +9,7 @@ from train.srt import SRT
 
 from util import *
 
-version = '2.0.0'
-max_error_log = 20
-max_try_log = 100
+version = '3.0.0'
 
 
 class SrtThread(QThread):
@@ -72,6 +70,9 @@ class KtxThread(QThread):
 
 class UiMainClass(QDialog):
     def __init__(self):
+        self.max_error_log = 20
+        self.max_try_log = 100
+
         self.srt = SRT(self.error_callback, self.srt_try_callback)
         self.srt_stations = self.srt.get_stations()
         self.srt_thread = None
@@ -167,6 +168,137 @@ class UiMainClass(QDialog):
         self.main_ui.pushButton_ktx_search.clicked.connect(self.pushButton_ktx_search_clicked)
         # 열차 예매
         self.main_ui.pushButton_ktx_reservation.clicked.connect(self.pushButton_ktx_reservation_clicked)
+
+        ### Settings
+        if 'max_error_log' in self.db.keys():
+            try:
+                self.db['max_error_log'] = int(self.db['max_error_log'])
+                self.max_error_log = self.db['max_error_log']
+            except:
+                self.error_callback("DB 로드 실패", f"max_error_log - {self.db['max_error_log']}")
+        if 'max_try_log' in self.db.keys():
+            try:
+                self.db['max_try_log'] = int(self.db['max_try_log'])
+                self.max_try_log = self.db['max_try_log']
+            except:
+                self.error_callback("DB 로드 실패", f"max_try_log - {self.db['max_try_log']}")
+        self.main_ui.lineEdit_max_error_log.setText(str(self.max_error_log))
+        self.main_ui.lineEdit_max_try_log.setText(str(self.max_try_log))
+
+        self.main_ui.pushButton_settings_save.clicked.connect(self.pushButton_settings_save_clicked)
+
+        ### Telegram
+        if 'telegram_enable' in self.db.keys() and self.db['telegram_enable']:
+            self.main_ui.checkBox_telegram_enable.setChecked(True)
+        if 'telegram_token' in self.db.keys():
+            self.main_ui.lineEdit_telegram_token.setText(self.db['telegram_token'])
+        if 'telegram_chatid' in self.db.keys():
+            self.main_ui.lineEdit_telegram_chatid.setText(self.db['telegram_chatid'])
+
+        self.main_ui.pushButton_telegram_test.clicked.connect(self.pushButton_telegram_test_clicked)
+        self.main_ui.pushButton_telegram_save.clicked.connect(self.pushButton_telegram_save_clicked)
+
+        ### Email
+        if 'email_enable' in self.db.keys() and self.db['email_enable']:
+            self.main_ui.checkBox_email_enable.setChecked(True)
+        if 'email_sender' in self.db.keys():
+            self.main_ui.lineEdit_email_sender.setText(self.db['email_sender'])
+        if 'email_passwd' in self.db.keys():
+            self.main_ui.lineEdit_email_passwd.setText(self.db['email_passwd'])
+        if 'email_receiver' in self.db.keys():
+            self.main_ui.lineEdit_email_receiver.setText(self.db['email_receiver'])
+
+        self.main_ui.pushButton_email_test.clicked.connect(self.pushButton_email_test_clicked)
+        self.main_ui.pushButton_email_save.clicked.connect(self.pushButton_email_save_clicked)
+
+    def pushButton_settings_save_clicked(self):
+        try:
+            max_error_log_tmp = int(self.main_ui.lineEdit_max_error_log.text())
+            self.main_ui.lineEdit_max_error_log.setText(str(max_error_log_tmp))
+            self.db['max_error_log'] = max_error_log_tmp
+        except:
+            self.error_callback("DB 저장 실패", f"최대 에러 로그 - {self.main_ui.lineEdit_max_error_log.text()}")
+            return False
+        try:
+            max_try_log_tmp = int(self.main_ui.lineEdit_max_try_log.text())
+            self.main_ui.lineEdit_max_try_log.setText(str(max_try_log_tmp))
+            self.db['max_try_log'] = max_try_log_tmp
+        except:
+            self.error_callback("DB 저장 실패", f"최대 예매 로그 - {self.main_ui.lineEdit_max_try_log.text()}")
+            return False
+
+        save_db(self.db)
+        QMessageBox.about(self, '저장 완료', '저장 완료')
+
+    def pushButton_telegram_test_clicked(self):
+        token = self.main_ui.lineEdit_telegram_token.text()
+        chatid = self.main_ui.lineEdit_telegram_chatid.text()
+
+        telegram_ = Telegram(token, chatid, self.error_callback, self.telegram_try_callback)
+        if telegram_.send_message("기차 예매 프로그램 테스트 메세지입니다"):
+            QMessageBox.about(self, '테스트 성공', '텔레그램 발송 성공')
+        else:
+            QMessageBox.about(self, '테스트 실패', '텔레그램 발송 실패')
+
+    def pushButton_telegram_save_clicked(self):
+        self.db['telegram_enable'] = self.main_ui.checkBox_telegram_enable.isChecked()
+        self.db['telegram_token'] = self.main_ui.lineEdit_telegram_token.text()
+        self.db['telegram_chatid'] = self.main_ui.lineEdit_telegram_chatid.text()
+
+        save_db(self.db)
+        QMessageBox.about(self, '저장 완료', '저장 완료')
+
+    def telegram_try_callback(self, msg):
+        self.main_ui.tableWidget_telegram_try.insertRow(0)
+        self.main_ui.tableWidget_telegram_try.setItem(0, 0, QTableWidgetItem(get_nowtime()))
+        self.main_ui.tableWidget_telegram_try.setItem(0, 1, QTableWidgetItem(msg))
+
+        self.main_ui.tableWidget_telegram_try.resizeColumnToContents(0)
+        self.main_ui.tableWidget_telegram_try.resizeRowsToContents()
+
+    def pushButton_email_test_clicked(self):
+        sender = self.main_ui.lineEdit_email_sender.text() + "@gmail.com"
+        passwd = self.main_ui.lineEdit_email_passwd.text()
+        receiver = self.main_ui.lineEdit_email_receiver.text()
+
+        email_ = Email(sender, passwd, receiver, self.error_callback, self.email_try_callback)
+        if email_.send_email("기차 예매 프로그램 테스트 이메일입니다"):
+            QMessageBox.about(self, '테스트 성공', '이메일 발송 성공')
+        else:
+            QMessageBox.about(self, '테스트 실패', '이메일 발송 실패')
+
+    def pushButton_email_save_clicked(self):
+        self.db['email_enable'] = self.main_ui.checkBox_email_enable.isChecked()
+        self.db['email_sender'] = self.main_ui.lineEdit_email_sender.text()
+        self.db['email_passwd'] = self.main_ui.lineEdit_email_passwd.text()
+        self.db['email_receiver'] = self.main_ui.lineEdit_email_receiver.text()
+
+        save_db(self.db)
+        QMessageBox.about(self, '저장 완료', '저장 완료')
+
+    def email_try_callback(self, msg):
+        self.main_ui.tableWidget_email_try.insertRow(0)
+        self.main_ui.tableWidget_email_try.setItem(0, 0, QTableWidgetItem(get_nowtime()))
+        self.main_ui.tableWidget_email_try.setItem(0, 1, QTableWidgetItem(msg))
+
+        self.main_ui.tableWidget_email_try.resizeColumnToContents(0)
+        self.main_ui.tableWidget_email_try.resizeRowsToContents()
+
+    def send_success_message(self, msg):
+        if self.main_ui.checkBox_telegram_enable.isChecked():       # 텔레그램 발송
+            token = self.main_ui.lineEdit_telegram_token.text()
+            chatid = self.main_ui.lineEdit_telegram_chatid.text()
+
+            telegram_ = Telegram(token, chatid, self.error_callback, self.telegram_try_callback)
+            telegram_.send_message(msg)
+
+        if self.main_ui.checkBox_email_enable.isChecked():          # 이메일 발송
+            sender = self.main_ui.lineEdit_email_sender.text() + "@gmail.com"
+            passwd = self.main_ui.lineEdit_email_passwd.text()
+            receiver = self.main_ui.lineEdit_email_receiver.text()
+
+            email_ = Email(sender, passwd, receiver, self.error_callback, self.email_try_callback)
+            email_.send_email(msg)
 
     def comboBox_srt_login_type_changed(self):
         self.main_ui.label_srt_id.setText(self.main_ui.comboBox_srt_login_type.currentText())
@@ -343,6 +475,8 @@ class UiMainClass(QDialog):
             self.main_ui.pushButton_srt_reservation.setText('예매시작')
             QMessageBox.about(self, 'SRT 예매 성공', '10분 내에 SRT 앱에서 결제해주세요')
 
+            self.send_success_message('SRT 예매 성공\n\n10분 내에 SRT 앱에서 결제해주세요')
+
     def srt_update_ctr(self, ctr):
         self.main_ui.lcdNumber_srt_ctr.display(ctr)
 
@@ -354,8 +488,8 @@ class UiMainClass(QDialog):
         self.main_ui.tableWidget_srt_try_log.setItem(0, 3, QTableWidgetItem(detail_info))
 
         # 일정 개수 이상 로그가 쌓이면 삭제
-        if self.main_ui.tableWidget_srt_try_log.rowCount() > max_try_log:
-            self.main_ui.tableWidget_srt_try_log.removeRow(max_try_log)
+        if self.main_ui.tableWidget_srt_try_log.rowCount() > self.max_try_log:
+            self.main_ui.tableWidget_srt_try_log.removeRow(self.max_try_log)
 
         self.main_ui.tableWidget_srt_try_log.resizeColumnToContents(0)
         self.main_ui.tableWidget_srt_try_log.resizeColumnToContents(1)
@@ -572,6 +706,8 @@ class UiMainClass(QDialog):
             self.main_ui.pushButton_ktx_reservation.setText('예매시작')
             QMessageBox.about(self, 'KTX 예매 성공', '20분 내에 KTX 홈페이지에서 결제해주세요')
 
+            self.send_success_message('KTX 예매 성공\n\n20분 내에 KTX 홈페이지에서 결제해주세요')
+
     def ktx_update_ctr(self, ctr):
         self.main_ui.lcdNumber_ktx_ctr.display(ctr)
 
@@ -583,8 +719,8 @@ class UiMainClass(QDialog):
         self.main_ui.tableWidget_ktx_try_log.setItem(0, 3, QTableWidgetItem(detail_info))
 
         # 일정 개수 이상 로그가 쌓이면 삭제
-        if self.main_ui.tableWidget_ktx_try_log.rowCount() > max_try_log:
-            self.main_ui.tableWidget_ktx_try_log.removeRow(max_try_log)
+        if self.main_ui.tableWidget_ktx_try_log.rowCount() > self.max_try_log:
+            self.main_ui.tableWidget_ktx_try_log.removeRow(self.max_try_log)
 
         self.main_ui.tableWidget_ktx_try_log.resizeColumnToContents(0)
         self.main_ui.tableWidget_ktx_try_log.resizeColumnToContents(1)
@@ -646,8 +782,8 @@ class UiMainClass(QDialog):
         self.main_ui.tableWidget_error_log.setItem(0, 2, QTableWidgetItem(detail_))
 
         # 일정 개수 이상 로그가 쌓이면 삭제
-        if self.main_ui.tableWidget_error_log.rowCount() > max_error_log:
-            self.main_ui.tableWidget_error_log.removeRow(max_error_log)
+        if self.main_ui.tableWidget_error_log.rowCount() > self.max_error_log:
+            self.main_ui.tableWidget_error_log.removeRow(self.max_error_log)
 
         self.main_ui.tableWidget_error_log.resizeColumnToContents(0)
         self.main_ui.tableWidget_error_log.resizeColumnToContents(1)
