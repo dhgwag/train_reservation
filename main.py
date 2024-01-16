@@ -387,7 +387,7 @@ class UiMainClass(QDialog):
         if not self.srt_thread:
             self.srt_thread = SrtThread(self)
             self.srt_thread.reservation_func.connect(self.srt_reservation_func)
-            self.srt_thread.update_ctr_signal.connect(self.ktx_update_ctr)
+            self.srt_thread.update_ctr_signal.connect(self.srt_update_ctr)
 
         if self.srt_thread.isRunning():     # 동작 중일 때
             self.srt_thread.stop()
