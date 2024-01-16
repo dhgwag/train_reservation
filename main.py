@@ -302,18 +302,18 @@ class UiMainClass(QDialog):
                         })
 
             if not self.srt.is_logged_in():
-                self.error_callback('예매 실패', '로그인을 먼저 해주세요')
+                self.error_callback('SRT 예매 실패', '로그인을 먼저 해주세요')
                 self.main_ui.groupBox_srt_login.show()
                 self.main_ui.label_srt_logged_in.hide()
                 return False
             if adult + child + senior + svrDsb + mldDsb < 1:
-                self.error_callback('예매 실패', '인원을 선택해주세요')
+                self.error_callback('SRT 예매 실패', '인원을 선택해주세요')
                 return False
             if not self.srt_schedules:
-                self.error_callback('예매 실패', '열차 조회를 먼저 해주세요')
+                self.error_callback('SRT 예매 실패', '열차 조회를 먼저 해주세요')
                 return False
             if not self.srt_reservation_list:
-                self.error_callback('예매 실패', '선택된 열차가 없습니다')
+                self.error_callback('SRT 예매 실패', '선택된 열차가 없습니다')
                 return False
 
             self.srt_thread.start()
@@ -529,18 +529,18 @@ class UiMainClass(QDialog):
                         })
 
             if not self.ktx.is_logged_in():
-                self.error_callback('예매 실패', '로그인을 먼저 해주세요')
+                self.error_callback('KTX 예매 실패', '로그인을 먼저 해주세요')
                 self.main_ui.groupBox_ktx_login.show()
                 self.main_ui.label_ktx_logged_in.hide()
                 return False
             if adult + child + baby + senior + svrDsb + mldDsb < 1:
-                self.error_callback('예매 실패', '인원을 선택해주세요')
+                self.error_callback('KTX 예매 실패', '인원을 선택해주세요')
                 return False
             if not self.ktx_schedules:
-                self.error_callback('예매 실패', '열차 조회를 먼저 해주세요')
+                self.error_callback('KTX 예매 실패', '열차 조회를 먼저 해주세요')
                 return False
             if not self.ktx_reservation_list:
-                self.error_callback('예매 실패', '선택된 열차가 없습니다')
+                self.error_callback('KTX 예매 실패', '선택된 열차가 없습니다')
                 return False
 
             self.ktx_thread.start()
