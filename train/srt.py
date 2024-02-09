@@ -62,8 +62,28 @@ class SRT:
     def get_stations(self):
         return self.stations
 
+    def check_waiting(self, key):
+        nwait = 0
+        if key == "": # first
+            waiting_url = "https://nf.letskorail.com/ts.wseq?opcode=5101&nfid=0&prefix=NetFunnel.gRtype=5101;&sid=service_1&aid=act_9&js=true"
+            res = self.session.get(waiting_url)
+            waiting_exists = '5002:200' not in res.text.split('key=')[0]
+            if waiting_exists:
+                key = res.text.split('key=')[1].split('&')[0]
+                nwait = int(res.text.split('key=')[1].split('&')[1].split('=')[1])
+            else:
+                key = ""
+        else:
+            waiting_url = f"https://nf.letskorail.com/ts.wseq?opcode=5002&key={key}&nfid=0&prefix=NetFunnel.gRtype=5002;&ttl=1&sid=service_1&aid=act_9&js=true"
+            res = self.session.get(waiting_url)
+            key = res.text.split('key=')[1].split('&')[0]
+            waiting_exists = '5002:200' not in res.text.split('key=')[0]
+            nwait = int(res.text.split('key=')[1].split('&')[1].split('=')[1])
+
+        return waiting_exists, nwait, key
+
     def fetch_schedule(self, dptRsStnCdNm, arvRsStnCdNm, dptDt, dptTm, adult, child, senior, svrDsb, mldDsb,
-                       chtnDvCd='1', locSeatAttCd1='000', rqSeatAttCd1='015', trnGpCd='300', dlayTnumAplFlg='Y'):
+                       chtnDvCd='1', locSeatAttCd1='000', rqSeatAttCd1='015', trnGpCd='300', dlayTnumAplFlg='Y', key=""):
         schedule_url = "https://etk.srail.kr/hpg/hra/01/selectScheduleList.do"
         body = {
             "dptRsStnCd": self.stations[dptRsStnCdNm],  # 출발역 코드 (e.g. 0551)
@@ -87,6 +107,8 @@ class SRT:
             "trnGpCd": trnGpCd,  # 차종구분 (109 - 전체, 300 - SRT, 900 - SRT+KTX)
             "dlayTnumAplFlg": dlayTnumAplFlg,  # 지연열차포함 (Y - 포함, N - 미포함)
         }
+        if key != "":
+            body['key'] = key
         try:
             res = self.session.post(schedule_url, data=body)
         except Exception as e:

@@ -9,16 +9,19 @@ from train.srt import SRT
 
 from util import *
 
-version = '3.1.0'
+version = '4.0.0'
 
 
 class SrtThread(QThread):
     reservation_func = pyqtSignal()
     update_ctr_signal = pyqtSignal(int)
+    fetch_schedule = pyqtSignal()
+    check_waiting = pyqtSignal()
 
-    def __init__(self, parent):
+    def __init__(self, parent, action="reservation"):
         super().__init__(parent)
         self.parent = parent
+        self.action = action
         self.running = False
 
     def isRunning(self):
@@ -31,13 +34,20 @@ class SrtThread(QThread):
 
     def run(self):
         self.running = True
-        ctr = 0
+        if self.action == "reservation":
+            ctr = 0
 
-        while self.running:
-            ctr += 1
-            self.reservation_func.emit()
-            self.update_ctr_signal.emit(ctr)
-            time.sleep(float(self.parent.main_ui.doubleSpinBox_srt_delay.text()))
+            while self.running:
+                ctr += 1
+                self.reservation_func.emit()
+                self.update_ctr_signal.emit(ctr)
+                time.sleep(float(self.parent.main_ui.doubleSpinBox_srt_delay.text()))
+        elif self.action == "fetch_schedule":
+            while self.running:
+                self.check_waiting.emit()
+                time.sleep(1)
+
+            self.fetch_schedule.emit()
 
 
 class KtxThread(QThread):
@@ -76,12 +86,15 @@ class UiMainClass(QDialog):
         self.srt = SRT(self.error_callback, self.srt_try_callback)
         self.srt_stations = self.srt.get_stations()
         self.srt_thread = None
+        self.srt_schedule_thread = None
+        self.dot_cnt = 0
 
         self.srt_radiobuttons = []
         self.srt_schedules = []
 
         self.srt_reservation_list = []
         self.srt_reservation_idx = 0
+        self.srt_waiting_key = ""
 
         self.ktx = KTX(self.error_callback, self.ktx_try_callback)
         self.ktx_stations = self.ktx.get_stations()
@@ -329,59 +342,14 @@ class UiMainClass(QDialog):
             save_db(self.db)
 
     def pushButton_srt_search_clicked(self):
-        dptRsStnCdNm = self.main_ui.comboBox_srt_dpt_stn.currentText()
-        arvRsStnCdNm = self.main_ui.comboBox_srt_arv_stn.currentText()
-        dptDt = self.main_ui.dateTimeEdit_srt_time.date().toString('yyyyMMdd')
-        dptTm = self.main_ui.dateTimeEdit_srt_time.time().toString('HHmmss')
-        adult = self.main_ui.comboBox_srt_adult.currentIndex()
-        child = self.main_ui.comboBox_srt_child.currentIndex()
-        senior = self.main_ui.comboBox_srt_senior.currentIndex()
-        svrDsb = self.main_ui.comboBox_srt_svrDsb.currentIndex()
-        mldDsb = self.main_ui.comboBox_srt_mldDsb.currentIndex()
-        chtnDvCd = '1'  # 직통
-        locSeatAttCd1 = self.get_srt_locSeatAttCd()
-        rqSeatAttCd1 = self.get_srt_rqSeatAttCd()
-        trnGpCd = '300' # SRT
-        dlayTnumAplFlg = 'Y'
+        if not self.srt_schedule_thread:
+            self.srt_schedule_thread = SrtThread(self, "fetch_schedule")
+            self.srt_schedule_thread.fetch_schedule.connect(self.srt_fetch_schedule_func)
+            self.srt_schedule_thread.check_waiting.connect(self.srt_check_waiting_func)
 
-        if dptRsStnCdNm == arvRsStnCdNm:
-            self.error_callback('SRT 열차 조회 실패', '출발역과 도착역이 같습니다')
-            return False
-        self.srt_schedules = self.srt.fetch_schedule(dptRsStnCdNm, arvRsStnCdNm, dptDt, dptTm, adult, child, senior, svrDsb,
-                                                 mldDsb, chtnDvCd, locSeatAttCd1, rqSeatAttCd1, trnGpCd, dlayTnumAplFlg)
-
-        # 기차 스케쥴 초기화
-        self.srt_radiobuttons = []
-        self.main_ui.tableWidget_srt_schedule.setRowCount(0)
-
-        if len(self.srt_schedules) == 0:
-            self.error_callback('SRT 열차 없음', '검색된 열차가 없습니다')
-
-        for idx, schedule in enumerate(self.srt_schedules):
-            dptTm = schedule['dptTm'][0:2] + ':' + schedule['dptTm'][2:4]
-
-            self.main_ui.tableWidget_srt_schedule.insertRow(idx)
-            self.main_ui.tableWidget_srt_schedule.setItem(idx, 0, QTableWidgetItem(str(int(schedule['trnNo']))))
-            self.main_ui.tableWidget_srt_schedule.setItem(idx, 1, QTableWidgetItem(schedule['dptRsStnCdNm']))
-            self.main_ui.tableWidget_srt_schedule.setItem(idx, 2, QTableWidgetItem(schedule['arvRsStnCdNm']))
-            self.main_ui.tableWidget_srt_schedule.setItem(idx, 3, QTableWidgetItem(dptTm))
-
-            self.main_ui.tableWidget_srt_schedule.item(idx, 0).setTextAlignment(Qt.AlignCenter)
-            self.main_ui.tableWidget_srt_schedule.item(idx, 1).setTextAlignment(Qt.AlignCenter)
-            self.main_ui.tableWidget_srt_schedule.item(idx, 2).setTextAlignment(Qt.AlignCenter)
-            self.main_ui.tableWidget_srt_schedule.item(idx, 3).setTextAlignment(Qt.AlignCenter)
-
-            radiobutton = QRadioButton()
-            radiobutton.setAutoExclusive(False)
-            self.srt_radiobuttons.append(radiobutton)
-            cellWidget = QWidget()
-            layoutCB = QHBoxLayout(cellWidget)
-            layoutCB.addWidget(self.srt_radiobuttons[-1])
-            layoutCB.setAlignment(Qt.AlignCenter)
-            layoutCB.setContentsMargins(0, 0, 0, 0)
-            cellWidget.setLayout(layoutCB)
-
-            self.main_ui.tableWidget_srt_schedule.setCellWidget(idx, 4, cellWidget)
+        if not self.srt_schedule_thread.isRunning():
+            self.main_ui.pushButton_srt_search.setText('조회 중...')
+            self.srt_schedule_thread.start()
 
     def pushButton_srt_reservation_clicked(self):
         if not self.srt_thread:
@@ -451,6 +419,74 @@ class UiMainClass(QDialog):
             self.srt_thread.start()
             self.main_ui.pushButton_srt_reservation.setStyleSheet("QPushButton{background-color : red;}")
             self.main_ui.pushButton_srt_reservation.setText('예매중지')
+
+    def srt_check_waiting_func(self):
+        waiting_exists, nwait, key = self.srt.check_waiting(self.srt_waiting_key)
+        if waiting_exists:
+            self.srt_waiting_key = key
+            self.main_ui.pushButton_srt_search.setText(f'조회 중{"."*(self.dot_cnt+1)}(대기 인원 : {nwait}명)')
+            self.dot_cnt = (self.dot_cnt+1) % 3
+        else:
+            if self.srt_waiting_key != "":
+                self.srt_waiting_key = key
+            self.srt_schedule_thread.stop()
+
+    def srt_fetch_schedule_func(self):
+        dptRsStnCdNm = self.main_ui.comboBox_srt_dpt_stn.currentText()
+        arvRsStnCdNm = self.main_ui.comboBox_srt_arv_stn.currentText()
+        dptDt = self.main_ui.dateTimeEdit_srt_time.date().toString('yyyyMMdd')
+        dptTm = self.main_ui.dateTimeEdit_srt_time.time().toString('HHmmss')
+        adult = self.main_ui.comboBox_srt_adult.currentIndex()
+        child = self.main_ui.comboBox_srt_child.currentIndex()
+        senior = self.main_ui.comboBox_srt_senior.currentIndex()
+        svrDsb = self.main_ui.comboBox_srt_svrDsb.currentIndex()
+        mldDsb = self.main_ui.comboBox_srt_mldDsb.currentIndex()
+        chtnDvCd = '1'  # 직통
+        locSeatAttCd1 = self.get_srt_locSeatAttCd()
+        rqSeatAttCd1 = self.get_srt_rqSeatAttCd()
+        trnGpCd = '300' # SRT
+        dlayTnumAplFlg = 'Y'
+
+        if dptRsStnCdNm == arvRsStnCdNm:
+            self.error_callback('SRT 열차 조회 실패', '출발역과 도착역이 같습니다')
+            return False
+        self.srt_schedules = self.srt.fetch_schedule(dptRsStnCdNm, arvRsStnCdNm, dptDt, dptTm, adult, child, senior, svrDsb,
+                                                     mldDsb, chtnDvCd, locSeatAttCd1, rqSeatAttCd1, trnGpCd,
+                                                     dlayTnumAplFlg, self.srt_waiting_key)
+        self.srt_waiting_key = ""
+        # 기차 스케쥴 초기화
+        self.srt_radiobuttons = []
+        self.main_ui.tableWidget_srt_schedule.setRowCount(0)
+
+        if len(self.srt_schedules) == 0:
+            self.error_callback('SRT 열차 없음', '검색된 열차가 없습니다')
+
+        for idx, schedule in enumerate(self.srt_schedules):
+            dptTm = schedule['dptTm'][0:2] + ':' + schedule['dptTm'][2:4]
+
+            self.main_ui.tableWidget_srt_schedule.insertRow(idx)
+            self.main_ui.tableWidget_srt_schedule.setItem(idx, 0, QTableWidgetItem(str(int(schedule['trnNo']))))
+            self.main_ui.tableWidget_srt_schedule.setItem(idx, 1, QTableWidgetItem(schedule['dptRsStnCdNm']))
+            self.main_ui.tableWidget_srt_schedule.setItem(idx, 2, QTableWidgetItem(schedule['arvRsStnCdNm']))
+            self.main_ui.tableWidget_srt_schedule.setItem(idx, 3, QTableWidgetItem(dptTm))
+
+            self.main_ui.tableWidget_srt_schedule.item(idx, 0).setTextAlignment(Qt.AlignCenter)
+            self.main_ui.tableWidget_srt_schedule.item(idx, 1).setTextAlignment(Qt.AlignCenter)
+            self.main_ui.tableWidget_srt_schedule.item(idx, 2).setTextAlignment(Qt.AlignCenter)
+            self.main_ui.tableWidget_srt_schedule.item(idx, 3).setTextAlignment(Qt.AlignCenter)
+
+            radiobutton = QRadioButton()
+            radiobutton.setAutoExclusive(False)
+            self.srt_radiobuttons.append(radiobutton)
+            cellWidget = QWidget()
+            layoutCB = QHBoxLayout(cellWidget)
+            layoutCB.addWidget(self.srt_radiobuttons[-1])
+            layoutCB.setAlignment(Qt.AlignCenter)
+            layoutCB.setContentsMargins(0, 0, 0, 0)
+            cellWidget.setLayout(layoutCB)
+
+            self.main_ui.tableWidget_srt_schedule.setCellWidget(idx, 4, cellWidget)
+        self.main_ui.pushButton_srt_search.setText('조회')
 
     def srt_reservation_func(self):
         rsv_item = self.srt_reservation_list[self.srt_reservation_idx]
