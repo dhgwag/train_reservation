@@ -4,7 +4,7 @@
 원하는 표가 나올 때 까지 새로고침하여 예약을 시도합니다.
 
 ## 다운
-[릴리즈](https://github.com/dhgwag/train_reservation/releases )에서 최신 파일 다운로드  
+[릴리즈](https://github.com/dhgwag/train_reservation/releases/latest )에서 최신 파일 다운로드  
 Windows : 기차표예매.exe  
 Mac OS(OS X) : 기차표예매.app
 
