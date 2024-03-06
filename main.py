@@ -1,5 +1,8 @@
+# pyinstaller -F -w -n 기차표예매 -i icon.ico main.py --add-binary "img/qr.png:img"
+
 import time
 
+from PyQt5 import QtWidgets, QtGui, QtCore
 from PyQt5.QtCore import Qt, QThread, pyqtSignal
 from PyQt5.QtWidgets import QApplication, QDialog, QTableWidgetItem, QRadioButton, QWidget, QHBoxLayout, QMessageBox
 
@@ -143,6 +146,8 @@ class UiMainClass(QDialog):
 
         self.main_ui.pushButton_srt_reservation.setStyleSheet("QPushButton{background-color : lightblue;}")
 
+        self.main_ui.pushButton_donation.clicked.connect(self.pushButton_donation_clicked)
+
         # 로그인 타입 변경
         self.main_ui.comboBox_srt_login_type.currentIndexChanged.connect(self.comboBox_srt_login_type_changed)
         # 로그인
@@ -223,6 +228,25 @@ class UiMainClass(QDialog):
 
         self.main_ui.pushButton_email_test.clicked.connect(self.pushButton_email_test_clicked)
         self.main_ui.pushButton_email_save.clicked.connect(self.pushButton_email_save_clicked)
+
+    def pushButton_donation_clicked(self):
+        dialog = QtWidgets.QDialog()
+        lay = QtWidgets.QVBoxLayout(dialog)
+        label = QtWidgets.QLabel()
+        lay.addWidget(label)
+
+        img_path = ""
+        if os.path.exists("img/qr.png"):
+            img_path = "img/qr.png"
+        try:
+            if os.path.exists(os.path.join(sys._MEIPASS, "img/qr.png")):
+                img_path = os.path.join(sys._MEIPASS, "img/qr.png")
+        except:
+            pass
+        pixmap = QtGui.QPixmap(img_path)
+        pixmap.scaledToWidth(100)
+        label.setPixmap(pixmap)
+        dialog.exec_()
 
     def pushButton_settings_save_clicked(self):
         try:
