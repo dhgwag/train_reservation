@@ -68,11 +68,9 @@ class SRT:
             waiting_url = "https://nf.letskorail.com/ts.wseq?opcode=5101&nfid=0&prefix=NetFunnel.gRtype=5101;&sid=service_1&aid=act_9&js=true"
             res = self.session.get(waiting_url)
             waiting_exists = '5002:200' not in res.text.split('key=')[0]
+            key = res.text.split('key=')[1].split('&')[0]
             if waiting_exists:
-                key = res.text.split('key=')[1].split('&')[0]
                 nwait = int(res.text.split('key=')[1].split('&')[1].split('=')[1])
-            else:
-                key = ""
         else:
             waiting_url = f"https://nf.letskorail.com/ts.wseq?opcode=5002&key={key}&nfid=0&prefix=NetFunnel.gRtype=5002;&ttl=1&sid=service_1&aid=act_9&js=true"
             res = self.session.get(waiting_url)
@@ -371,8 +369,9 @@ class SRT:
 
 
 if __name__ == "__main__":
-    srt = SRT()
+    srt = SRT(None, None)
     srt.login('1', '1690208813', '*Kk1710710')
-    schedules = srt.fetch_schedule('수서', '부산', '20240112', '053100', 1, 0, 0, 0, 0)
-
-    srt.book_ticket(1, 0, 0, 0, 0, schedules[0], '000', '015', True, True)
+    a, b, c = srt.check_waiting("")
+    schedules = srt.fetch_schedule('수서', '부산', '20240312', '053100', 1, 0, 0, 0, 0, key=c)
+    print(schedules)
+    # srt.book_ticket(1, 0, 0, 0, 0, schedules[0], '000', '015', True, True)

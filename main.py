@@ -9,7 +9,7 @@ from train.srt import SRT
 
 from util import *
 
-version = '4.0.0'
+version = '5.0.0'
 
 
 class SrtThread(QThread):
@@ -422,13 +422,11 @@ class UiMainClass(QDialog):
 
     def srt_check_waiting_func(self):
         waiting_exists, nwait, key = self.srt.check_waiting(self.srt_waiting_key)
+        self.srt_waiting_key = key
         if waiting_exists:
-            self.srt_waiting_key = key
             self.main_ui.pushButton_srt_search.setText(f'조회 중{"."*(self.dot_cnt+1)}(대기 인원 : {nwait}명)')
             self.dot_cnt = (self.dot_cnt+1) % 3
         else:
-            if self.srt_waiting_key != "":
-                self.srt_waiting_key = key
             self.srt_schedule_thread.stop()
 
     def srt_fetch_schedule_func(self):
