@@ -29,10 +29,12 @@ class SRT:
         except Exception as e:
             self.error_callback('SRT 로그인 요청 실패', f"HTTP 요청에 실패했습니다 - \n{e}")
             return False
-        print(res.text)
+
         try:
-            if "location.replace('/cmc/01/periodicPassInfo.do?pageId=TK0204020000')" in res.text:
+            if "location.replace('/main.do')" in res.text:
                 return True
+            elif "periodicPassInfo" in res.text:
+                self.error_callback('SRT 로그인 실패', "비밀번호 주기적 변경 필요. 홈페이지 로그인 후 비밀번호를 변경해주세요.")
             elif "존재하지않는 회원" in res.text:
                 self.error_callback('SRT 로그인 실패', "존재하지 않는 회원입니다")
             elif "비밀번호 오류횟수" in res.text:
@@ -73,6 +75,24 @@ class SRT:
                 nwait = int(res.text.split('key=')[1].split('&')[1].split('=')[1])
         else:
             waiting_url = f"https://nf.letskorail.com/ts.wseq?opcode=5002&key={key}&nfid=0&prefix=NetFunnel.gRtype=5002;&ttl=1&sid=service_1&aid=act_9&js=true"
+            res = self.session.get(waiting_url)
+            key = res.text.split('key=')[1].split('&')[0]
+            waiting_exists = '5002:200' not in res.text.split('key=')[0]
+            nwait = int(res.text.split('key=')[1].split('&')[1].split('=')[1])
+
+        return waiting_exists, nwait, key
+
+    def check_booking(self, key):
+        nwait = 0
+        if key == "": # first
+            waiting_url = "https://nf.letskorail.com/ts.wseq?opcode=5101&nfid=0&prefix=NetFunnel.gRtype=5101;&sid=service_1&aid=act_19&js=true"
+            res = self.session.get(waiting_url)
+            waiting_exists = '5002:200' not in res.text.split('key=')[0]
+            key = res.text.split('key=')[1].split('&')[0]
+            if waiting_exists:
+                nwait = int(res.text.split('key=')[1].split('&')[1].split('=')[1])
+        else:
+            waiting_url = f"https://nf.letskorail.com/ts.wseq?opcode=5002&key={key}&nfid=0&prefix=NetFunnel.gRtype=5002;&ttl=1&sid=service_1&aid=act_19&js=true"
             res = self.session.get(waiting_url)
             key = res.text.split('key=')[1].split('&')[0]
             waiting_exists = '5002:200' not in res.text.split('key=')[0]
@@ -182,7 +202,7 @@ class SRT:
             self.error_callback('SRT 역 조회 실패', f"파싱에 실패했습니다 - \n{e}")
         return result
 
-    def book_ticket(self, adult, child, senior, svrDsb, mldDsb, train_schedule, locSeatAttCd, rqSeatAttCd,
+    def book_ticket(self, key, adult, child, senior, svrDsb, mldDsb, train_schedule, locSeatAttCd, rqSeatAttCd,
                     isReservation=False, isBusiness=False):
         check_user_url = "https://etk.srail.kr/hpg/hra/01/checkUserInfo.do"
         reservation_url = "https://etk.srail.kr/hpg/hra/02/requestReservationInfo.do"
@@ -207,6 +227,7 @@ class SRT:
             psgGrid.append(["3", str(mldDsb)])
 
         body = {
+            "key": key,
             "rsvTpCd": "05" if isReservation else "01",
             "jobId": "1102" if isReservation else "1101",
             "jrnyTpCd": "11",

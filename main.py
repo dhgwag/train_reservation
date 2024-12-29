@@ -511,8 +511,17 @@ class UiMainClass(QDialog):
         self.main_ui.pushButton_srt_search.setText('조회')
 
     def srt_reservation_func(self):
+        while True:
+            waiting_exists, nwait, key = self.srt.check_booking(self.srt_waiting_key)
+            self.srt_waiting_key = key
+            if waiting_exists:
+                time.sleep(1)
+            else:
+                break
+
         rsv_item = self.srt_reservation_list[self.srt_reservation_idx]
         success = self.srt.book_ticket(
+            self.srt_waiting_key,
             rsv_item['adult'],
             rsv_item['child'],
             rsv_item['senior'],
@@ -524,6 +533,7 @@ class UiMainClass(QDialog):
             rsv_item['isReservation'],
             rsv_item['isBusiness'],
         )
+        self.srt_waiting_key = ""
 
         self.srt_reservation_idx = (self.srt_reservation_idx+1) % len(self.srt_reservation_list)
 

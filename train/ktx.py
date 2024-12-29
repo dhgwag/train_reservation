@@ -336,7 +336,7 @@ class KTX:
                       f"{'' if svrDsb == 0 else '중증장애인 ' + str(svrDsb) + '명'} " \
                       f"{'' if mldDsb == 0 else '경증장애인 ' + str(mldDsb) + '명'} "
 
-        if "20분 이내 결제" in reservation_res.text or "예약 대기" in reservation_res.text:
+        if "결제하기" in reservation_res.text or "예약 대기" in reservation_res.text:
             self.try_callback(True, "", detail_info)
             return True
         if "잔여석없음" in reservation_res.text:
@@ -347,6 +347,8 @@ class KTX:
             self.try_callback(False, "20분 이내 열차 예약 불가", detail_info)
         elif "일반최대 단체최소" in reservation_res.text:
             self.try_callback(False, "인원 수 오류, 9명 이하만 예약 가능", detail_info)
+        elif "동일한 예약 내역" in reservation_res.text:
+            self.try_callback(False, "동일한 예약 내역 존재, 기존 예약 취소 후 가능", detail_info)
         else:
             self.try_callback(False, "기타 사유", detail_info + reservation_res.text)
 
