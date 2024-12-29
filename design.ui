@@ -1,0 +1,2573 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>dialog</class>
+ <widget class="QDialog" name="dialog">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>1211</width>
+    <height>1014</height>
+   </rect>
+  </property>
+  <property name="sizePolicy">
+   <sizepolicy hsizetype="Maximum" vsizetype="Maximum">
+    <horstretch>0</horstretch>
+    <verstretch>0</verstretch>
+   </sizepolicy>
+  </property>
+  <property name="windowTitle">
+   <string>매진 기차표 예매</string>
+  </property>
+  <property name="sizeGripEnabled">
+   <bool>false</bool>
+  </property>
+  <layout class="QVBoxLayout" name="verticalLayout_2">
+   <item>
+    <layout class="QHBoxLayout" name="horizontalLayout_18">
+     <property name="bottomMargin">
+      <number>0</number>
+     </property>
+     <item>
+      <widget class="QPushButton" name="pushButton_donation">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
+         <horstretch>1</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">background-color: rgb(255, 74, 78)</string>
+       </property>
+       <property name="text">
+        <string>개발자에게 커피 한 잔 선물하기</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLabel" name="label">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+       <property name="text">
+        <string>Contact : rhkrehdgns@gmail.com     Version : </string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLabel" name="label_version">
+       <property name="text">
+        <string>0.0.0</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </item>
+   <item>
+    <widget class="QTabWidget" name="tabWidget">
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+       <horstretch>0</horstretch>
+       <verstretch>5</verstretch>
+      </sizepolicy>
+     </property>
+     <property name="currentIndex">
+      <number>0</number>
+     </property>
+     <widget class="QWidget" name="tab_srt">
+      <property name="enabled">
+       <bool>true</bool>
+      </property>
+      <property name="autoFillBackground">
+       <bool>false</bool>
+      </property>
+      <attribute name="title">
+       <string>SRT</string>
+      </attribute>
+      <layout class="QHBoxLayout" name="horizontalLayout_4">
+       <item>
+        <widget class="QGroupBox" name="verticalGroupBox">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+           <horstretch>1</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <layout class="QVBoxLayout" name="verticalLayout_3">
+          <item>
+           <widget class="QLabel" name="label_srt_logged_in">
+            <property name="enabled">
+             <bool>true</bool>
+            </property>
+            <property name="font">
+             <font>
+              <pointsize>20</pointsize>
+             </font>
+            </property>
+            <property name="text">
+             <string>로그인 계정</string>
+            </property>
+            <property name="alignment">
+             <set>Qt::AlignCenter</set>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QGroupBox" name="groupBox_srt_login">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+              <horstretch>3</horstretch>
+              <verstretch>1</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="title">
+             <string>로그인</string>
+            </property>
+            <layout class="QVBoxLayout" name="verticalLayout_6">
+             <item>
+              <widget class="QWidget" name="verticalWidget" native="true">
+               <property name="sizePolicy">
+                <sizepolicy hsizetype="Preferred" vsizetype="Minimum">
+                 <horstretch>0</horstretch>
+                 <verstretch>0</verstretch>
+                </sizepolicy>
+               </property>
+               <layout class="QHBoxLayout" name="horizontalLayout_3">
+                <item>
+                 <widget class="QLabel" name="label_2">
+                  <property name="text">
+                   <string>로그인 방식</string>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QComboBox" name="comboBox_srt_login_type">
+                  <item>
+                   <property name="text">
+                    <string>회원번호</string>
+                   </property>
+                  </item>
+                  <item>
+                   <property name="text">
+                    <string>이메일</string>
+                   </property>
+                  </item>
+                  <item>
+                   <property name="text">
+                    <string>휴대전화</string>
+                   </property>
+                  </item>
+                 </widget>
+                </item>
+                <item>
+                 <spacer name="horizontalSpacer">
+                  <property name="orientation">
+                   <enum>Qt::Horizontal</enum>
+                  </property>
+                  <property name="sizeHint" stdset="0">
+                   <size>
+                    <width>40</width>
+                    <height>20</height>
+                   </size>
+                  </property>
+                 </spacer>
+                </item>
+                <item>
+                 <widget class="QCheckBox" name="checkBox_srt_save_login">
+                  <property name="text">
+                   <string>로그인 정보 저장</string>
+                  </property>
+                 </widget>
+                </item>
+               </layout>
+              </widget>
+             </item>
+             <item>
+              <layout class="QHBoxLayout" name="horizontalLayout_5">
+               <item>
+                <layout class="QVBoxLayout" name="verticalLayout_5">
+                 <property name="bottomMargin">
+                  <number>0</number>
+                 </property>
+                 <item>
+                  <layout class="QHBoxLayout" name="horizontalLayout_9">
+                   <item>
+                    <widget class="QLabel" name="label_srt_id">
+                     <property name="sizePolicy">
+                      <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+                       <horstretch>1</horstretch>
+                       <verstretch>0</verstretch>
+                      </sizepolicy>
+                     </property>
+                     <property name="text">
+                      <string>회원번호</string>
+                     </property>
+                    </widget>
+                   </item>
+                   <item>
+                    <widget class="QLineEdit" name="lineEdit_srt_id">
+                     <property name="enabled">
+                      <bool>true</bool>
+                     </property>
+                     <property name="sizePolicy">
+                      <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+                       <horstretch>5</horstretch>
+                       <verstretch>0</verstretch>
+                      </sizepolicy>
+                     </property>
+                    </widget>
+                   </item>
+                  </layout>
+                 </item>
+                 <item>
+                  <layout class="QHBoxLayout" name="horizontalLayout_6">
+                   <property name="topMargin">
+                    <number>0</number>
+                   </property>
+                   <item>
+                    <widget class="QLabel" name="label_srt_pwd">
+                     <property name="sizePolicy">
+                      <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+                       <horstretch>1</horstretch>
+                       <verstretch>0</verstretch>
+                      </sizepolicy>
+                     </property>
+                     <property name="text">
+                      <string>비밀번호</string>
+                     </property>
+                    </widget>
+                   </item>
+                   <item>
+                    <widget class="QLineEdit" name="lineEdit_srt_pwd">
+                     <property name="sizePolicy">
+                      <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+                       <horstretch>5</horstretch>
+                       <verstretch>0</verstretch>
+                      </sizepolicy>
+                     </property>
+                     <property name="inputMethodHints">
+                      <set>Qt::ImhHiddenText|Qt::ImhNoAutoUppercase|Qt::ImhNoPredictiveText|Qt::ImhSensitiveData</set>
+                     </property>
+                     <property name="echoMode">
+                      <enum>QLineEdit::Password</enum>
+                     </property>
+                    </widget>
+                   </item>
+                  </layout>
+                 </item>
+                </layout>
+               </item>
+               <item>
+                <widget class="QPushButton" name="pushButton_srt_login">
+                 <property name="sizePolicy">
+                  <sizepolicy hsizetype="Maximum" vsizetype="Maximum">
+                   <horstretch>0</horstretch>
+                   <verstretch>0</verstretch>
+                  </sizepolicy>
+                 </property>
+                 <property name="text">
+                  <string>로그인</string>
+                 </property>
+                </widget>
+               </item>
+              </layout>
+             </item>
+            </layout>
+           </widget>
+          </item>
+          <item>
+           <widget class="QGroupBox" name="groupBox_4">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+              <horstretch>0</horstretch>
+              <verstretch>1</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="title">
+             <string>환경설정</string>
+            </property>
+            <layout class="QVBoxLayout" name="verticalLayout_7">
+             <item>
+              <layout class="QHBoxLayout" name="horizontalLayout_10">
+               <item>
+                <widget class="QComboBox" name="comboBox_srt_class">
+                 <item>
+                  <property name="text">
+                   <string>일반실</string>
+                  </property>
+                 </item>
+                 <item>
+                  <property name="text">
+                   <string>특실</string>
+                  </property>
+                 </item>
+                 <item>
+                  <property name="text">
+                   <string>일반실+특실</string>
+                  </property>
+                 </item>
+                </widget>
+               </item>
+               <item>
+                <widget class="QRadioButton" name="radioButton_srt_waiting">
+                 <property name="text">
+                  <string>예약대기 신청</string>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <layout class="QHBoxLayout" name="horizontalLayout_16">
+                 <item>
+                  <widget class="QLabel" name="label_5">
+                   <property name="text">
+                    <string>예매 시도 주기</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item>
+                  <widget class="QDoubleSpinBox" name="doubleSpinBox_srt_delay">
+                   <property name="inputMethodHints">
+                    <set>Qt::ImhDigitsOnly|Qt::ImhFormattedNumbersOnly</set>
+                   </property>
+                   <property name="decimals">
+                    <number>1</number>
+                   </property>
+                   <property name="singleStep">
+                    <double>0.200000000000000</double>
+                   </property>
+                   <property name="value">
+                    <double>2.000000000000000</double>
+                   </property>
+                  </widget>
+                 </item>
+                 <item>
+                  <widget class="QLabel" name="label_6">
+                   <property name="text">
+                    <string>초</string>
+                   </property>
+                  </widget>
+                 </item>
+                </layout>
+               </item>
+              </layout>
+             </item>
+             <item>
+              <layout class="QHBoxLayout" name="horizontalLayout_12">
+               <item>
+                <widget class="QComboBox" name="comboBox_srt_adult">
+                 <property name="sizePolicy">
+                  <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+                   <horstretch>0</horstretch>
+                   <verstretch>0</verstretch>
+                  </sizepolicy>
+                 </property>
+                 <property name="minimumSize">
+                  <size>
+                   <width>80</width>
+                   <height>0</height>
+                  </size>
+                 </property>
+                 <property name="currentText">
+                  <string>성인 0명</string>
+                 </property>
+                 <property name="sizeAdjustPolicy">
+                  <enum>QComboBox::AdjustToContentsOnFirstShow</enum>
+                 </property>
+                 <property name="frame">
+                  <bool>true</bool>
+                 </property>
+                 <item>
+                  <property name="text">
+                   <string>성인 0명</string>
+                  </property>
+                 </item>
+                 <item>
+                  <property name="text">
+                   <string>성인 1명</string>
+                  </property>
+                 </item>
+                 <item>
+                  <property name="text">
+                   <string>성인 2명</string>
+                  </property>
+                 </item>
+                 <item>
+                  <property name="text">
+                   <string>성인 3명</string>
+                  </property>
+                 </item>
+                 <item>
+                  <property name="text">
+                   <string>성인 4명</string>
+                  </property>
+                 </item>
+                 <item>
+                  <property name="text">
+                   <string>성인 5명</string>
+                  </property>
+                 </item>
+                 <item>
+                  <property name="text">
+                   <string>성임 6명</string>
+                  </property>
+                 </item>
+                 <item>
+                  <property name="text">
+                   <string>성인 7명</string>
+                  </property>
+                 </item>
+                 <item>
+                  <property name="text">
+                   <string>성인 8명</string>
+                  </property>
+                 </item>
+                 <item>
+                  <property name="text">
+                   <string>성인 9명</string>
+                  </property>
+                 </item>
+                </widget>
+               </item>
+               <item>
+                <widget class="QComboBox" name="comboBox_srt_child">
+                 <property name="sizePolicy">
+                  <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+                   <horstretch>0</horstretch>
+                   <verstretch>0</verstretch>
+                  </sizepolicy>
+                 </property>
+                 <property name="minimumSize">
+                  <size>
+                   <width>80</width>
+                   <height>0</height>
+                  </size>
+                 </property>
+                 <item>
+                  <property name="text">
+                   <string>어린이 0명</string>
+                  </property>
+                 </item>
+                 <item>
+                  <property name="text">
+                   <string>어린이 1명</string>
+                  </property>
+                 </item>
+                 <item>
+                  <property name="text">
+                   <string>어린이 2명</string>
+                  </property>
+                 </item>
+                 <item>
+                  <property name="text">
+                   <string>어린이 3명</string>
+                  </property>
+                 </item>
+                 <item>
+                  <property name="text">
+                   <string>어린이 4명</string>
+                  </property>
+                 </item>
+                 <item>
+                  <property name="text">
+                   <string>어린이 5명</string>
+                  </property>
+                 </item>
+                 <item>
+                  <property name="text">
+                   <string>어린이 6명</string>
+                  </property>
+                 </item>
+                 <item>
+                  <property name="text">
+                   <string>어린이 7명</string>
+                  </property>
+                 </item>
+                 <item>
+                  <property name="text">
+                   <string>어린이 8명</string>
+                  </property>
+                 </item>
+                 <item>
+                  <property name="text">
+                   <string>어린이 9명</string>
+                  </property>
+                 </item>
+                </widget>
+               </item>
+               <item>
+                <widget class="QComboBox" name="comboBox_srt_senior">
+                 <property name="sizePolicy">
+                  <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+                   <horstretch>0</horstretch>
+                   <verstretch>0</verstretch>
+                  </sizepolicy>
+                 </property>
+                 <property name="minimumSize">
+                  <size>
+                   <width>80</width>
+                   <height>0</height>
+                  </size>
+                 </property>
+                 <item>
+                  <property name="text">
+                   <string>노인 0명</string>
+                  </property>
+                 </item>
+                 <item>
+                  <property name="text">
+                   <string>노인 1명</string>
+                  </property>
+                 </item>
+                 <item>
+                  <property name="text">
+                   <string>노인 2명</string>
+                  </property>
+                 </item>
+                 <item>
+                  <property name="text">
+                   <string>노인 3명</string>
+                  </property>
+                 </item>
+                 <item>
+                  <property name="text">
+                   <string>노인 4명</string>
+                  </property>
+                 </item>
+                 <item>
+                  <property name="text">
+                   <string>노인 5명</string>
+                  </property>
+                 </item>
+                 <item>
+                  <property name="text">
+                   <string>노인 6명</string>
+                  </property>
+                 </item>
+                 <item>
+                  <property name="text">
+                   <string>노인 7명</string>
+                  </property>
+                 </item>
+                 <item>
+                  <property name="text">
+                   <string>노인 8명</string>
+                  </property>
+                 </item>
+                 <item>
+                  <property name="text">
+                   <string>노인 9명</string>
+                  </property>
+                 </item>
+                </widget>
+               </item>
+               <item>
+                <widget class="QComboBox" name="comboBox_srt_svrDsb">
+                 <property name="minimumSize">
+                  <size>
+                   <width>80</width>
+                   <height>0</height>
+                  </size>
+                 </property>
+                 <item>
+                  <property name="text">
+                   <string>중증장애인 0명</string>
+                  </property>
+                 </item>
+                 <item>
+                  <property name="text">
+                   <string>중증장애인 1명</string>
+                  </property>
+                 </item>
+                 <item>
+                  <property name="text">
+                   <string>중증장애인 2명</string>
+                  </property>
+                 </item>
+                 <item>
+                  <property name="text">
+                   <string>중증장애인 3명</string>
+                  </property>
+                 </item>
+                 <item>
+                  <property name="text">
+                   <string>중증장애인 4명</string>
+                  </property>
+                 </item>
+                 <item>
+                  <property name="text">
+                   <string>중증장애인 5명</string>
+                  </property>
+                 </item>
+                 <item>
+                  <property name="text">
+                   <string>중증장애인 6명</string>
+                  </property>
+                 </item>
+                 <item>
+                  <property name="text">
+                   <string>중증장애인 7명</string>
+                  </property>
+                 </item>
+                 <item>
+                  <property name="text">
+                   <string>중증장애인 8명</string>
+                  </property>
+                 </item>
+                 <item>
+                  <property name="text">
+                   <string>중증장애인 9명</string>
+                  </property>
+                 </item>
+                </widget>
+               </item>
+               <item>
+                <widget class="QComboBox" name="comboBox_srt_mldDsb">
+                 <property name="minimumSize">
+                  <size>
+                   <width>80</width>
+                   <height>0</height>
+                  </size>
+                 </property>
+                 <item>
+                  <property name="text">
+                   <string>경증장애인 0명</string>
+                  </property>
+                 </item>
+                 <item>
+                  <property name="text">
+                   <string>경증장애인 1명</string>
+                  </property>
+                 </item>
+                 <item>
+                  <property name="text">
+                   <string>경증장애인 2명</string>
+                  </property>
+                 </item>
+                 <item>
+                  <property name="text">
+                   <string>경증장애인 3명</string>
+                  </property>
+                 </item>
+                 <item>
+                  <property name="text">
+                   <string>경증장애인 4명</string>
+                  </property>
+                 </item>
+                 <item>
+                  <property name="text">
+                   <string>경증장애인 5명</string>
+                  </property>
+                 </item>
+                 <item>
+                  <property name="text">
+                   <string>경증장애인 6명</string>
+                  </property>
+                 </item>
+                 <item>
+                  <property name="text">
+                   <string>경증장애인 7명</string>
+                  </property>
+                 </item>
+                 <item>
+                  <property name="text">
+                   <string>경증장애인 8명</string>
+                  </property>
+                 </item>
+                 <item>
+                  <property name="text">
+                   <string>경증장애인 9명</string>
+                  </property>
+                 </item>
+                </widget>
+               </item>
+              </layout>
+             </item>
+             <item>
+              <layout class="QHBoxLayout" name="horizontalLayout_11">
+               <property name="bottomMargin">
+                <number>0</number>
+               </property>
+               <item>
+                <widget class="QComboBox" name="comboBox_srt_locSeatAttCd">
+                 <item>
+                  <property name="text">
+                   <string>모든좌석</string>
+                  </property>
+                 </item>
+                 <item>
+                  <property name="text">
+                   <string>1인석</string>
+                  </property>
+                 </item>
+                 <item>
+                  <property name="text">
+                   <string>창측좌석</string>
+                  </property>
+                 </item>
+                 <item>
+                  <property name="text">
+                   <string>내측좌석</string>
+                  </property>
+                 </item>
+                </widget>
+               </item>
+               <item>
+                <widget class="QComboBox" name="comboBox_srt_rqSeatAttCd">
+                 <item>
+                  <property name="text">
+                   <string>일반석</string>
+                  </property>
+                 </item>
+                 <item>
+                  <property name="text">
+                   <string>휠체어</string>
+                  </property>
+                 </item>
+                 <item>
+                  <property name="text">
+                   <string>전동휠체어</string>
+                  </property>
+                 </item>
+                </widget>
+               </item>
+              </layout>
+             </item>
+            </layout>
+           </widget>
+          </item>
+          <item>
+           <widget class="QGroupBox" name="groupBox_5">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+              <horstretch>0</horstretch>
+              <verstretch>2</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="title">
+             <string>열차 선택</string>
+            </property>
+            <layout class="QVBoxLayout" name="verticalLayout_8">
+             <item>
+              <layout class="QHBoxLayout" name="horizontalLayout_13">
+               <item>
+                <widget class="QComboBox" name="comboBox_srt_dpt_stn">
+                 <property name="sizePolicy">
+                  <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+                   <horstretch>1</horstretch>
+                   <verstretch>0</verstretch>
+                  </sizepolicy>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QLabel" name="label_3">
+                 <property name="sizePolicy">
+                  <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
+                   <horstretch>0</horstretch>
+                   <verstretch>0</verstretch>
+                  </sizepolicy>
+                 </property>
+                 <property name="text">
+                  <string>⇀</string>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QComboBox" name="comboBox_srt_arv_stn">
+                 <property name="sizePolicy">
+                  <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+                   <horstretch>1</horstretch>
+                   <verstretch>0</verstretch>
+                  </sizepolicy>
+                 </property>
+                </widget>
+               </item>
+              </layout>
+             </item>
+             <item>
+              <layout class="QHBoxLayout" name="horizontalLayout_15">
+               <property name="bottomMargin">
+                <number>0</number>
+               </property>
+               <item>
+                <widget class="QLabel" name="label_4">
+                 <property name="sizePolicy">
+                  <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+                   <horstretch>0</horstretch>
+                   <verstretch>0</verstretch>
+                  </sizepolicy>
+                 </property>
+                 <property name="text">
+                  <string>출발시각 </string>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QDateTimeEdit" name="dateTimeEdit_srt_time">
+                 <property name="sizePolicy">
+                  <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
+                   <horstretch>2</horstretch>
+                   <verstretch>0</verstretch>
+                  </sizepolicy>
+                 </property>
+                 <property name="displayFormat">
+                  <string>yyyy. M. d. AP h:mm</string>
+                 </property>
+                 <property name="calendarPopup">
+                  <bool>false</bool>
+                 </property>
+                </widget>
+               </item>
+              </layout>
+             </item>
+             <item>
+              <widget class="QPushButton" name="pushButton_srt_search">
+               <property name="text">
+                <string>조회</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QTableWidget" name="tableWidget_srt_schedule">
+               <property name="editTriggers">
+                <set>QAbstractItemView::NoEditTriggers</set>
+               </property>
+               <attribute name="horizontalHeaderStretchLastSection">
+                <bool>true</bool>
+               </attribute>
+               <column>
+                <property name="text">
+                 <string>열차번호</string>
+                </property>
+               </column>
+               <column>
+                <property name="text">
+                 <string>출발역</string>
+                </property>
+               </column>
+               <column>
+                <property name="text">
+                 <string>도착역</string>
+                </property>
+               </column>
+               <column>
+                <property name="text">
+                 <string>출발시간</string>
+                </property>
+               </column>
+               <column>
+                <property name="text">
+                 <string>예매하기</string>
+                </property>
+               </column>
+              </widget>
+             </item>
+            </layout>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="pushButton_srt_reservation">
+            <property name="autoFillBackground">
+             <bool>false</bool>
+            </property>
+            <property name="text">
+             <string>예매시작</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+       </item>
+       <item>
+        <widget class="QGroupBox" name="groupBox_2">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+           <horstretch>1</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="title">
+          <string>예매 로그</string>
+         </property>
+         <layout class="QVBoxLayout" name="verticalLayout_4">
+          <property name="leftMargin">
+           <number>0</number>
+          </property>
+          <property name="topMargin">
+           <number>0</number>
+          </property>
+          <property name="rightMargin">
+           <number>0</number>
+          </property>
+          <property name="bottomMargin">
+           <number>0</number>
+          </property>
+          <item>
+           <layout class="QHBoxLayout" name="horizontalLayout_17">
+            <property name="bottomMargin">
+             <number>0</number>
+            </property>
+            <item>
+             <widget class="QLabel" name="label_7">
+              <property name="text">
+               <string>예매 시도 횟수</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QLCDNumber" name="lcdNumber_srt_ctr">
+              <property name="sizePolicy">
+               <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
+                <horstretch>1</horstretch>
+                <verstretch>0</verstretch>
+               </sizepolicy>
+              </property>
+              <property name="font">
+               <font>
+                <pointsize>13</pointsize>
+               </font>
+              </property>
+              <property name="segmentStyle">
+               <enum>QLCDNumber::Flat</enum>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </item>
+          <item>
+           <widget class="QTableWidget" name="tableWidget_srt_try_log">
+            <property name="editTriggers">
+             <set>QAbstractItemView::NoEditTriggers</set>
+            </property>
+            <attribute name="horizontalHeaderStretchLastSection">
+             <bool>true</bool>
+            </attribute>
+            <column>
+             <property name="text">
+              <string>시간</string>
+             </property>
+            </column>
+            <column>
+             <property name="text">
+              <string>결과</string>
+             </property>
+            </column>
+            <column>
+             <property name="text">
+              <string>사유</string>
+             </property>
+            </column>
+            <column>
+             <property name="text">
+              <string>예매정보</string>
+             </property>
+            </column>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+     <widget class="QWidget" name="tab_ktx">
+      <property name="enabled">
+       <bool>true</bool>
+      </property>
+      <property name="autoFillBackground">
+       <bool>false</bool>
+      </property>
+      <attribute name="title">
+       <string>KTX</string>
+      </attribute>
+      <layout class="QHBoxLayout" name="horizontalLayout_4">
+       <item>
+        <widget class="QGroupBox" name="verticalGroupBox1">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+           <horstretch>1</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <layout class="QVBoxLayout" name="verticalLayout_3">
+          <item>
+           <widget class="QLabel" name="label_ktx_logged_in">
+            <property name="enabled">
+             <bool>true</bool>
+            </property>
+            <property name="font">
+             <font>
+              <pointsize>20</pointsize>
+             </font>
+            </property>
+            <property name="text">
+             <string>로그인 계정</string>
+            </property>
+            <property name="alignment">
+             <set>Qt::AlignCenter</set>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QGroupBox" name="groupBox_ktx_login">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+              <horstretch>3</horstretch>
+              <verstretch>1</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="title">
+             <string>로그인</string>
+            </property>
+            <layout class="QVBoxLayout" name="verticalLayout_6">
+             <item>
+              <widget class="QWidget" name="verticalWidget1" native="true">
+               <property name="sizePolicy">
+                <sizepolicy hsizetype="Preferred" vsizetype="Minimum">
+                 <horstretch>0</horstretch>
+                 <verstretch>0</verstretch>
+                </sizepolicy>
+               </property>
+               <layout class="QHBoxLayout" name="horizontalLayout_3">
+                <item>
+                 <widget class="QLabel" name="label_21">
+                  <property name="text">
+                   <string>로그인 방식</string>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QComboBox" name="comboBox_ktx_login_type">
+                  <item>
+                   <property name="text">
+                    <string>회원번호</string>
+                   </property>
+                  </item>
+                  <item>
+                   <property name="text">
+                    <string>이메일</string>
+                   </property>
+                  </item>
+                  <item>
+                   <property name="text">
+                    <string>휴대전화</string>
+                   </property>
+                  </item>
+                 </widget>
+                </item>
+                <item>
+                 <spacer name="horizontalSpacer1">
+                  <property name="orientation">
+                   <enum>Qt::Horizontal</enum>
+                  </property>
+                  <property name="sizeHint" stdset="0">
+                   <size>
+                    <width>40</width>
+                    <height>20</height>
+                   </size>
+                  </property>
+                 </spacer>
+                </item>
+                <item>
+                 <widget class="QCheckBox" name="checkBox_ktx_save_login">
+                  <property name="text">
+                   <string>로그인 정보 저장</string>
+                  </property>
+                 </widget>
+                </item>
+               </layout>
+              </widget>
+             </item>
+             <item>
+              <layout class="QHBoxLayout" name="horizontalLayout_51">
+               <item>
+                <layout class="QVBoxLayout" name="verticalLayout_51">
+                 <property name="bottomMargin">
+                  <number>0</number>
+                 </property>
+                 <item>
+                  <layout class="QHBoxLayout" name="horizontalLayout_91">
+                   <item>
+                    <widget class="QLabel" name="label_ktx_id">
+                     <property name="sizePolicy">
+                      <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+                       <horstretch>1</horstretch>
+                       <verstretch>0</verstretch>
+                      </sizepolicy>
+                     </property>
+                     <property name="text">
+                      <string>회원번호</string>
+                     </property>
+                    </widget>
+                   </item>
+                   <item>
+                    <widget class="QLineEdit" name="lineEdit_ktx_id">
+                     <property name="enabled">
+                      <bool>true</bool>
+                     </property>
+                     <property name="sizePolicy">
+                      <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+                       <horstretch>5</horstretch>
+                       <verstretch>0</verstretch>
+                      </sizepolicy>
+                     </property>
+                    </widget>
+                   </item>
+                  </layout>
+                 </item>
+                 <item>
+                  <layout class="QHBoxLayout" name="horizontalLayout_61">
+                   <property name="topMargin">
+                    <number>0</number>
+                   </property>
+                   <item>
+                    <widget class="QLabel" name="label_ktx_pwd">
+                     <property name="sizePolicy">
+                      <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+                       <horstretch>1</horstretch>
+                       <verstretch>0</verstretch>
+                      </sizepolicy>
+                     </property>
+                     <property name="text">
+                      <string>비밀번호</string>
+                     </property>
+                    </widget>
+                   </item>
+                   <item>
+                    <widget class="QLineEdit" name="lineEdit_ktx_pwd">
+                     <property name="sizePolicy">
+                      <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+                       <horstretch>5</horstretch>
+                       <verstretch>0</verstretch>
+                      </sizepolicy>
+                     </property>
+                     <property name="inputMethodHints">
+                      <set>Qt::ImhHiddenText|Qt::ImhNoAutoUppercase|Qt::ImhNoPredictiveText|Qt::ImhSensitiveData</set>
+                     </property>
+                     <property name="echoMode">
+                      <enum>QLineEdit::Password</enum>
+                     </property>
+                    </widget>
+                   </item>
+                  </layout>
+                 </item>
+                </layout>
+               </item>
+               <item>
+                <widget class="QPushButton" name="pushButton_ktx_login">
+                 <property name="sizePolicy">
+                  <sizepolicy hsizetype="Maximum" vsizetype="Maximum">
+                   <horstretch>0</horstretch>
+                   <verstretch>0</verstretch>
+                  </sizepolicy>
+                 </property>
+                 <property name="text">
+                  <string>로그인</string>
+                 </property>
+                </widget>
+               </item>
+              </layout>
+             </item>
+            </layout>
+           </widget>
+          </item>
+          <item>
+           <widget class="QGroupBox" name="groupBox_41">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+              <horstretch>0</horstretch>
+              <verstretch>1</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="title">
+             <string>환경설정</string>
+            </property>
+            <layout class="QVBoxLayout" name="verticalLayout_7">
+             <item>
+              <layout class="QHBoxLayout" name="horizontalLayout_101">
+               <item>
+                <widget class="QComboBox" name="comboBox_ktx_class">
+                 <item>
+                  <property name="text">
+                   <string>일반실</string>
+                  </property>
+                 </item>
+                 <item>
+                  <property name="text">
+                   <string>특실</string>
+                  </property>
+                 </item>
+                 <item>
+                  <property name="text">
+                   <string>일반실+특실</string>
+                  </property>
+                 </item>
+                </widget>
+               </item>
+               <item>
+                <widget class="QRadioButton" name="radioButton_ktx_waiting">
+                 <property name="text">
+                  <string>예약대기 신청</string>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <layout class="QHBoxLayout" name="horizontalLayout_161">
+                 <item>
+                  <widget class="QLabel" name="label_51">
+                   <property name="text">
+                    <string>예매 시도 주기</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item>
+                  <widget class="QDoubleSpinBox" name="doubleSpinBox_ktx_delay">
+                   <property name="inputMethodHints">
+                    <set>Qt::ImhDigitsOnly|Qt::ImhFormattedNumbersOnly</set>
+                   </property>
+                   <property name="decimals">
+                    <number>1</number>
+                   </property>
+                   <property name="singleStep">
+                    <double>0.200000000000000</double>
+                   </property>
+                   <property name="value">
+                    <double>2.000000000000000</double>
+                   </property>
+                  </widget>
+                 </item>
+                 <item>
+                  <widget class="QLabel" name="label_61">
+                   <property name="text">
+                    <string>초</string>
+                   </property>
+                  </widget>
+                 </item>
+                </layout>
+               </item>
+              </layout>
+             </item>
+             <item>
+              <layout class="QHBoxLayout" name="horizontalLayout_121">
+               <item>
+                <widget class="QComboBox" name="comboBox_ktx_adult">
+                 <property name="minimumSize">
+                  <size>
+                   <width>80</width>
+                   <height>0</height>
+                  </size>
+                 </property>
+                 <property name="currentText">
+                  <string>성인 0명</string>
+                 </property>
+                 <item>
+                  <property name="text">
+                   <string>성인 0명</string>
+                  </property>
+                 </item>
+                 <item>
+                  <property name="text">
+                   <string>성인 1명</string>
+                  </property>
+                 </item>
+                 <item>
+                  <property name="text">
+                   <string>성인 2명</string>
+                  </property>
+                 </item>
+                 <item>
+                  <property name="text">
+                   <string>성인 3명</string>
+                  </property>
+                 </item>
+                 <item>
+                  <property name="text">
+                   <string>성인 4명</string>
+                  </property>
+                 </item>
+                 <item>
+                  <property name="text">
+                   <string>성인 5명</string>
+                  </property>
+                 </item>
+                 <item>
+                  <property name="text">
+                   <string>성임 6명</string>
+                  </property>
+                 </item>
+                 <item>
+                  <property name="text">
+                   <string>성인 7명</string>
+                  </property>
+                 </item>
+                 <item>
+                  <property name="text">
+                   <string>성인 8명</string>
+                  </property>
+                 </item>
+                 <item>
+                  <property name="text">
+                   <string>성인 9명</string>
+                  </property>
+                 </item>
+                </widget>
+               </item>
+               <item>
+                <widget class="QComboBox" name="comboBox_ktx_child">
+                 <property name="minimumSize">
+                  <size>
+                   <width>80</width>
+                   <height>0</height>
+                  </size>
+                 </property>
+                 <item>
+                  <property name="text">
+                   <string>6~12세 0명</string>
+                  </property>
+                 </item>
+                 <item>
+                  <property name="text">
+                   <string>6~12세 1명</string>
+                  </property>
+                 </item>
+                 <item>
+                  <property name="text">
+                   <string>6~12세 2명</string>
+                  </property>
+                 </item>
+                 <item>
+                  <property name="text">
+                   <string>6~12세 3명</string>
+                  </property>
+                 </item>
+                 <item>
+                  <property name="text">
+                   <string>6~12세 4명</string>
+                  </property>
+                 </item>
+                 <item>
+                  <property name="text">
+                   <string>6~12세 5명</string>
+                  </property>
+                 </item>
+                 <item>
+                  <property name="text">
+                   <string>6~12세 6명</string>
+                  </property>
+                 </item>
+                 <item>
+                  <property name="text">
+                   <string>6~12세 7명</string>
+                  </property>
+                 </item>
+                 <item>
+                  <property name="text">
+                   <string>6~12세 8명</string>
+                  </property>
+                 </item>
+                 <item>
+                  <property name="text">
+                   <string>6~12세 9명</string>
+                  </property>
+                 </item>
+                </widget>
+               </item>
+               <item>
+                <widget class="QComboBox" name="comboBox_ktx_baby">
+                 <property name="minimumSize">
+                  <size>
+                   <width>80</width>
+                   <height>0</height>
+                  </size>
+                 </property>
+                 <item>
+                  <property name="text">
+                   <string>6세미만 0명</string>
+                  </property>
+                 </item>
+                 <item>
+                  <property name="text">
+                   <string>6세미만 1명</string>
+                  </property>
+                 </item>
+                 <item>
+                  <property name="text">
+                   <string>6세미만 2명</string>
+                  </property>
+                 </item>
+                 <item>
+                  <property name="text">
+                   <string>6세미만 3명</string>
+                  </property>
+                 </item>
+                 <item>
+                  <property name="text">
+                   <string>6세미만 4명</string>
+                  </property>
+                 </item>
+                 <item>
+                  <property name="text">
+                   <string>6세미만 5명</string>
+                  </property>
+                 </item>
+                 <item>
+                  <property name="text">
+                   <string>6세미만 6명</string>
+                  </property>
+                 </item>
+                 <item>
+                  <property name="text">
+                   <string>6세미만 7명</string>
+                  </property>
+                 </item>
+                 <item>
+                  <property name="text">
+                   <string>6세미만 8명</string>
+                  </property>
+                 </item>
+                 <item>
+                  <property name="text">
+                   <string>6세미만 9명</string>
+                  </property>
+                 </item>
+                </widget>
+               </item>
+               <item>
+                <widget class="QComboBox" name="comboBox_ktx_senior">
+                 <property name="minimumSize">
+                  <size>
+                   <width>80</width>
+                   <height>0</height>
+                  </size>
+                 </property>
+                 <item>
+                  <property name="text">
+                   <string>노인 0명</string>
+                  </property>
+                 </item>
+                 <item>
+                  <property name="text">
+                   <string>노인 1명</string>
+                  </property>
+                 </item>
+                 <item>
+                  <property name="text">
+                   <string>노인 2명</string>
+                  </property>
+                 </item>
+                 <item>
+                  <property name="text">
+                   <string>노인 3명</string>
+                  </property>
+                 </item>
+                 <item>
+                  <property name="text">
+                   <string>노인 4명</string>
+                  </property>
+                 </item>
+                 <item>
+                  <property name="text">
+                   <string>노인 5명</string>
+                  </property>
+                 </item>
+                 <item>
+                  <property name="text">
+                   <string>노인 6명</string>
+                  </property>
+                 </item>
+                 <item>
+                  <property name="text">
+                   <string>노인 7명</string>
+                  </property>
+                 </item>
+                 <item>
+                  <property name="text">
+                   <string>노인 8명</string>
+                  </property>
+                 </item>
+                 <item>
+                  <property name="text">
+                   <string>노인 9명</string>
+                  </property>
+                 </item>
+                </widget>
+               </item>
+               <item>
+                <widget class="QComboBox" name="comboBox_ktx_svrDsb">
+                 <property name="minimumSize">
+                  <size>
+                   <width>80</width>
+                   <height>0</height>
+                  </size>
+                 </property>
+                 <item>
+                  <property name="text">
+                   <string>중증장애인 0명</string>
+                  </property>
+                 </item>
+                 <item>
+                  <property name="text">
+                   <string>중증장애인 1명</string>
+                  </property>
+                 </item>
+                 <item>
+                  <property name="text">
+                   <string>중증장애인 2명</string>
+                  </property>
+                 </item>
+                 <item>
+                  <property name="text">
+                   <string>중증장애인 3명</string>
+                  </property>
+                 </item>
+                 <item>
+                  <property name="text">
+                   <string>중증장애인 4명</string>
+                  </property>
+                 </item>
+                 <item>
+                  <property name="text">
+                   <string>중증장애인 5명</string>
+                  </property>
+                 </item>
+                 <item>
+                  <property name="text">
+                   <string>중증장애인 6명</string>
+                  </property>
+                 </item>
+                 <item>
+                  <property name="text">
+                   <string>중증장애인 7명</string>
+                  </property>
+                 </item>
+                 <item>
+                  <property name="text">
+                   <string>중증장애인 8명</string>
+                  </property>
+                 </item>
+                 <item>
+                  <property name="text">
+                   <string>중증장애인 9명</string>
+                  </property>
+                 </item>
+                </widget>
+               </item>
+               <item>
+                <widget class="QComboBox" name="comboBox_ktx_mldDsb">
+                 <property name="minimumSize">
+                  <size>
+                   <width>80</width>
+                   <height>0</height>
+                  </size>
+                 </property>
+                 <item>
+                  <property name="text">
+                   <string>경증장애인 0명</string>
+                  </property>
+                 </item>
+                 <item>
+                  <property name="text">
+                   <string>경증장애인 1명</string>
+                  </property>
+                 </item>
+                 <item>
+                  <property name="text">
+                   <string>경증장애인 2명</string>
+                  </property>
+                 </item>
+                 <item>
+                  <property name="text">
+                   <string>경증장애인 3명</string>
+                  </property>
+                 </item>
+                 <item>
+                  <property name="text">
+                   <string>경증장애인 4명</string>
+                  </property>
+                 </item>
+                 <item>
+                  <property name="text">
+                   <string>경증장애인 5명</string>
+                  </property>
+                 </item>
+                 <item>
+                  <property name="text">
+                   <string>경증장애인 6명</string>
+                  </property>
+                 </item>
+                 <item>
+                  <property name="text">
+                   <string>경증장애인 7명</string>
+                  </property>
+                 </item>
+                 <item>
+                  <property name="text">
+                   <string>경증장애인 8명</string>
+                  </property>
+                 </item>
+                 <item>
+                  <property name="text">
+                   <string>경증장애인 9명</string>
+                  </property>
+                 </item>
+                </widget>
+               </item>
+              </layout>
+             </item>
+             <item>
+              <layout class="QHBoxLayout" name="horizontalLayout_111">
+               <property name="bottomMargin">
+                <number>0</number>
+               </property>
+               <item>
+                <widget class="QComboBox" name="comboBox_ktx_txtSeatAttCd_3">
+                 <item>
+                  <property name="text">
+                   <string>모든좌석</string>
+                  </property>
+                 </item>
+                 <item>
+                  <property name="text">
+                   <string>1인석</string>
+                  </property>
+                 </item>
+                 <item>
+                  <property name="text">
+                   <string>창측좌석</string>
+                  </property>
+                 </item>
+                 <item>
+                  <property name="text">
+                   <string>내측좌석</string>
+                  </property>
+                 </item>
+                </widget>
+               </item>
+               <item>
+                <widget class="QComboBox" name="comboBox_ktx_txtSeatAttCd_2">
+                 <item>
+                  <property name="text">
+                   <string>모든좌석</string>
+                  </property>
+                 </item>
+                 <item>
+                  <property name="text">
+                   <string>순방향석</string>
+                  </property>
+                 </item>
+                 <item>
+                  <property name="text">
+                   <string>역방향석</string>
+                  </property>
+                 </item>
+                </widget>
+               </item>
+               <item>
+                <widget class="QComboBox" name="comboBox_ktx_txtSeatAttCd_4">
+                 <item>
+                  <property name="text">
+                   <string>일반석</string>
+                  </property>
+                 </item>
+                 <item>
+                  <property name="text">
+                   <string>유아동반</string>
+                  </property>
+                 </item>
+                 <item>
+                  <property name="text">
+                   <string>편한대화</string>
+                  </property>
+                 </item>
+                 <item>
+                  <property name="text">
+                   <string>노트북</string>
+                  </property>
+                 </item>
+                 <item>
+                  <property name="text">
+                   <string>수동휠체어</string>
+                  </property>
+                 </item>
+                 <item>
+                  <property name="text">
+                   <string>전동휠체어</string>
+                  </property>
+                 </item>
+                 <item>
+                  <property name="text">
+                   <string>수유실 인접</string>
+                  </property>
+                 </item>
+                 <item>
+                  <property name="text">
+                   <string>2층석</string>
+                  </property>
+                 </item>
+                 <item>
+                  <property name="text">
+                   <string>자전거거치대</string>
+                  </property>
+                 </item>
+                </widget>
+               </item>
+              </layout>
+             </item>
+            </layout>
+           </widget>
+          </item>
+          <item>
+           <widget class="QGroupBox" name="groupBox_51">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+              <horstretch>0</horstretch>
+              <verstretch>2</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="title">
+             <string>열차 선택</string>
+            </property>
+            <layout class="QVBoxLayout" name="verticalLayout_8">
+             <item>
+              <layout class="QHBoxLayout" name="horizontalLayout_131">
+               <item>
+                <widget class="QComboBox" name="comboBox_ktx_dpt_stn">
+                 <property name="sizePolicy">
+                  <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+                   <horstretch>1</horstretch>
+                   <verstretch>0</verstretch>
+                  </sizepolicy>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QLabel" name="label_31">
+                 <property name="sizePolicy">
+                  <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
+                   <horstretch>0</horstretch>
+                   <verstretch>0</verstretch>
+                  </sizepolicy>
+                 </property>
+                 <property name="text">
+                  <string>⇀</string>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QComboBox" name="comboBox_ktx_arv_stn">
+                 <property name="sizePolicy">
+                  <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+                   <horstretch>1</horstretch>
+                   <verstretch>0</verstretch>
+                  </sizepolicy>
+                 </property>
+                </widget>
+               </item>
+              </layout>
+             </item>
+             <item>
+              <layout class="QHBoxLayout" name="horizontalLayout_151">
+               <property name="bottomMargin">
+                <number>0</number>
+               </property>
+               <item>
+                <widget class="QLabel" name="label_41">
+                 <property name="sizePolicy">
+                  <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+                   <horstretch>0</horstretch>
+                   <verstretch>0</verstretch>
+                  </sizepolicy>
+                 </property>
+                 <property name="text">
+                  <string>출발시각 </string>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QDateTimeEdit" name="dateTimeEdit_ktx_time">
+                 <property name="sizePolicy">
+                  <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
+                   <horstretch>2</horstretch>
+                   <verstretch>0</verstretch>
+                  </sizepolicy>
+                 </property>
+                 <property name="displayFormat">
+                  <string>yyyy. M. d. AP h:mm</string>
+                 </property>
+                 <property name="calendarPopup">
+                  <bool>false</bool>
+                 </property>
+                </widget>
+               </item>
+              </layout>
+             </item>
+             <item>
+              <widget class="QPushButton" name="pushButton_ktx_search">
+               <property name="text">
+                <string>조회</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QTableWidget" name="tableWidget_ktx_schedule">
+               <property name="editTriggers">
+                <set>QAbstractItemView::NoEditTriggers</set>
+               </property>
+               <attribute name="horizontalHeaderStretchLastSection">
+                <bool>true</bool>
+               </attribute>
+               <column>
+                <property name="text">
+                 <string>열차번호</string>
+                </property>
+               </column>
+               <column>
+                <property name="text">
+                 <string>출발역</string>
+                </property>
+               </column>
+               <column>
+                <property name="text">
+                 <string>도착역</string>
+                </property>
+               </column>
+               <column>
+                <property name="text">
+                 <string>출발시간</string>
+                </property>
+               </column>
+               <column>
+                <property name="text">
+                 <string>예매하기</string>
+                </property>
+               </column>
+              </widget>
+             </item>
+            </layout>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="pushButton_ktx_reservation">
+            <property name="autoFillBackground">
+             <bool>false</bool>
+            </property>
+            <property name="text">
+             <string>예매시작</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+       </item>
+       <item>
+        <widget class="QGroupBox" name="groupBox_21">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+           <horstretch>1</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="title">
+          <string>예매 로그</string>
+         </property>
+         <layout class="QVBoxLayout" name="verticalLayout_4">
+          <property name="leftMargin">
+           <number>0</number>
+          </property>
+          <property name="topMargin">
+           <number>0</number>
+          </property>
+          <property name="rightMargin">
+           <number>0</number>
+          </property>
+          <property name="bottomMargin">
+           <number>0</number>
+          </property>
+          <item>
+           <layout class="QHBoxLayout" name="horizontalLayout_171">
+            <property name="bottomMargin">
+             <number>0</number>
+            </property>
+            <item>
+             <widget class="QLabel" name="label_71">
+              <property name="text">
+               <string>예매 시도 횟수</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QLCDNumber" name="lcdNumber_ktx_ctr">
+              <property name="sizePolicy">
+               <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
+                <horstretch>1</horstretch>
+                <verstretch>0</verstretch>
+               </sizepolicy>
+              </property>
+              <property name="font">
+               <font>
+                <pointsize>13</pointsize>
+               </font>
+              </property>
+              <property name="segmentStyle">
+               <enum>QLCDNumber::Flat</enum>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </item>
+          <item>
+           <widget class="QTableWidget" name="tableWidget_ktx_try_log">
+            <property name="editTriggers">
+             <set>QAbstractItemView::NoEditTriggers</set>
+            </property>
+            <attribute name="horizontalHeaderStretchLastSection">
+             <bool>true</bool>
+            </attribute>
+            <column>
+             <property name="text">
+              <string>시간</string>
+             </property>
+            </column>
+            <column>
+             <property name="text">
+              <string>결과</string>
+             </property>
+            </column>
+            <column>
+             <property name="text">
+              <string>사유</string>
+             </property>
+            </column>
+            <column>
+             <property name="text">
+              <string>예매정보</string>
+             </property>
+            </column>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+     <widget class="QWidget" name="tab">
+      <attribute name="title">
+       <string>환경설정</string>
+      </attribute>
+      <layout class="QHBoxLayout" name="horizontalLayout_2">
+       <item>
+        <widget class="QGroupBox" name="groupBox_3">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+           <horstretch>1</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="title">
+          <string>환경 설정</string>
+         </property>
+         <layout class="QVBoxLayout" name="verticalLayout_11">
+          <item>
+           <spacer name="verticalSpacer">
+            <property name="orientation">
+             <enum>Qt::Vertical</enum>
+            </property>
+            <property name="sizeHint" stdset="0">
+             <size>
+              <width>20</width>
+              <height>40</height>
+             </size>
+            </property>
+           </spacer>
+          </item>
+          <item>
+           <layout class="QHBoxLayout" name="horizontalLayout_7">
+            <item>
+             <widget class="QLabel" name="label_8">
+              <property name="sizePolicy">
+               <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+                <horstretch>2</horstretch>
+                <verstretch>0</verstretch>
+               </sizepolicy>
+              </property>
+              <property name="text">
+               <string>최대 에러 로그</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QLineEdit" name="lineEdit_max_error_log">
+              <property name="sizePolicy">
+               <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+                <horstretch>4</horstretch>
+                <verstretch>0</verstretch>
+               </sizepolicy>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QLabel" name="label_16">
+              <property name="text">
+               <string>개</string>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </item>
+          <item>
+           <layout class="QHBoxLayout" name="horizontalLayout_8">
+            <item>
+             <widget class="QLabel" name="label_9">
+              <property name="sizePolicy">
+               <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+                <horstretch>2</horstretch>
+                <verstretch>0</verstretch>
+               </sizepolicy>
+              </property>
+              <property name="text">
+               <string>최대 예매 로그</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QLineEdit" name="lineEdit_max_try_log">
+              <property name="sizePolicy">
+               <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+                <horstretch>4</horstretch>
+                <verstretch>0</verstretch>
+               </sizepolicy>
+              </property>
+              <property name="inputMethodHints">
+               <set>Qt::ImhNone</set>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QLabel" name="label_17">
+              <property name="text">
+               <string>개</string>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </item>
+          <item>
+           <widget class="QPushButton" name="pushButton_settings_save">
+            <property name="text">
+             <string>저장</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <spacer name="verticalSpacer_2">
+            <property name="orientation">
+             <enum>Qt::Vertical</enum>
+            </property>
+            <property name="sizeHint" stdset="0">
+             <size>
+              <width>20</width>
+              <height>40</height>
+             </size>
+            </property>
+           </spacer>
+          </item>
+         </layout>
+        </widget>
+       </item>
+       <item>
+        <widget class="QGroupBox" name="groupBox_6">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+           <horstretch>1</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="title">
+          <string>텔레그램</string>
+         </property>
+         <layout class="QVBoxLayout" name="verticalLayout">
+          <item>
+           <widget class="QWidget" name="verticalWidget" native="true">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+              <horstretch>0</horstretch>
+              <verstretch>2</verstretch>
+             </sizepolicy>
+            </property>
+            <layout class="QVBoxLayout" name="verticalLayout_10">
+             <item>
+              <widget class="QCheckBox" name="checkBox_telegram_enable">
+               <property name="inputMethodHints">
+                <set>Qt::ImhDigitsOnly</set>
+               </property>
+               <property name="text">
+                <string>텔레그램 사용 (예매 성공 시 알림)</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <spacer name="verticalSpacer_3">
+               <property name="orientation">
+                <enum>Qt::Vertical</enum>
+               </property>
+               <property name="sizeHint" stdset="0">
+                <size>
+                 <width>20</width>
+                 <height>40</height>
+                </size>
+               </property>
+              </spacer>
+             </item>
+             <item>
+              <widget class="QLabel" name="label_18">
+               <property name="text">
+                <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;a href=&quot;https://velog.io/@kylie_03/Python-Telegram-bot-%EB%A7%8C%EB%93%A4%EA%B3%A0-%EB%A9%94%EC%84%B8%EC%A7%80-%EC%A0%84%EC%86%A1%ED%95%98%EA%B8%B0&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#419cff;&quot;&gt;텔레그램 설정 방법&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+               </property>
+               <property name="alignment">
+                <set>Qt::AlignCenter</set>
+               </property>
+               <property name="openExternalLinks">
+                <bool>true</bool>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <layout class="QHBoxLayout" name="horizontalLayout_19">
+               <item>
+                <widget class="QLabel" name="label_11">
+                 <property name="sizePolicy">
+                  <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+                   <horstretch>1</horstretch>
+                   <verstretch>0</verstretch>
+                  </sizepolicy>
+                 </property>
+                 <property name="text">
+                  <string>Token (발신)</string>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QLineEdit" name="lineEdit_telegram_token">
+                 <property name="sizePolicy">
+                  <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+                   <horstretch>3</horstretch>
+                   <verstretch>0</verstretch>
+                  </sizepolicy>
+                 </property>
+                </widget>
+               </item>
+              </layout>
+             </item>
+             <item>
+              <layout class="QHBoxLayout" name="horizontalLayout_14">
+               <item>
+                <widget class="QLabel" name="label_10">
+                 <property name="sizePolicy">
+                  <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+                   <horstretch>1</horstretch>
+                   <verstretch>0</verstretch>
+                  </sizepolicy>
+                 </property>
+                 <property name="text">
+                  <string>ChatId (수신)</string>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QLineEdit" name="lineEdit_telegram_chatid">
+                 <property name="sizePolicy">
+                  <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+                   <horstretch>3</horstretch>
+                   <verstretch>0</verstretch>
+                  </sizepolicy>
+                 </property>
+                </widget>
+               </item>
+              </layout>
+             </item>
+             <item>
+              <widget class="QPushButton" name="pushButton_telegram_test">
+               <property name="text">
+                <string>테스트</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <spacer name="verticalSpacer_4">
+               <property name="orientation">
+                <enum>Qt::Vertical</enum>
+               </property>
+               <property name="sizeHint" stdset="0">
+                <size>
+                 <width>20</width>
+                 <height>40</height>
+                </size>
+               </property>
+              </spacer>
+             </item>
+             <item>
+              <widget class="QPushButton" name="pushButton_telegram_save">
+               <property name="text">
+                <string>저장</string>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </widget>
+          </item>
+          <item>
+           <widget class="QGroupBox" name="groupBox_8">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+              <horstretch>0</horstretch>
+              <verstretch>1</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="title">
+             <string>발송 기록</string>
+            </property>
+            <layout class="QGridLayout" name="gridLayout">
+             <property name="leftMargin">
+              <number>0</number>
+             </property>
+             <property name="topMargin">
+              <number>0</number>
+             </property>
+             <property name="rightMargin">
+              <number>0</number>
+             </property>
+             <property name="bottomMargin">
+              <number>0</number>
+             </property>
+             <item row="0" column="0">
+              <widget class="QTableWidget" name="tableWidget_telegram_try">
+               <property name="editTriggers">
+                <set>QAbstractItemView::NoEditTriggers</set>
+               </property>
+               <attribute name="horizontalHeaderStretchLastSection">
+                <bool>true</bool>
+               </attribute>
+               <column>
+                <property name="text">
+                 <string>시간</string>
+                </property>
+               </column>
+               <column>
+                <property name="text">
+                 <string>메세지</string>
+                </property>
+               </column>
+              </widget>
+             </item>
+            </layout>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+       </item>
+       <item>
+        <widget class="QGroupBox" name="groupBox_7">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+           <horstretch>1</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="title">
+          <string>이메일(Gmail)</string>
+         </property>
+         <layout class="QVBoxLayout" name="verticalLayout_9">
+          <item>
+           <widget class="QWidget" name="verticalWidget_2" native="true">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+              <horstretch>0</horstretch>
+              <verstretch>2</verstretch>
+             </sizepolicy>
+            </property>
+            <layout class="QVBoxLayout" name="verticalLayout_12">
+             <item>
+              <widget class="QCheckBox" name="checkBox_email_enable">
+               <property name="text">
+                <string>이메일 사용 (예매 성공 시 알림)</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <spacer name="verticalSpacer_5">
+               <property name="orientation">
+                <enum>Qt::Vertical</enum>
+               </property>
+               <property name="sizeHint" stdset="0">
+                <size>
+                 <width>20</width>
+                 <height>40</height>
+                </size>
+               </property>
+              </spacer>
+             </item>
+             <item>
+              <widget class="QLabel" name="label_19">
+               <property name="text">
+                <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;a href=&quot;https://www.whatwant.com/entry/Python-Gmail&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#419cff;&quot;&gt;Gmail OTP 만드는 방법&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+               </property>
+               <property name="alignment">
+                <set>Qt::AlignCenter</set>
+               </property>
+               <property name="openExternalLinks">
+                <bool>true</bool>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <layout class="QHBoxLayout" name="horizontalLayout_20">
+               <item>
+                <widget class="QLabel" name="label_12">
+                 <property name="sizePolicy">
+                  <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+                   <horstretch>2</horstretch>
+                   <verstretch>0</verstretch>
+                  </sizepolicy>
+                 </property>
+                 <property name="text">
+                  <string>이메일(발신)</string>
+                 </property>
+                 <property name="openExternalLinks">
+                  <bool>false</bool>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QLineEdit" name="lineEdit_email_sender">
+                 <property name="sizePolicy">
+                  <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+                   <horstretch>4</horstretch>
+                   <verstretch>0</verstretch>
+                  </sizepolicy>
+                 </property>
+                 <property name="inputMethodHints">
+                  <set>Qt::ImhEmailCharactersOnly</set>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QLabel" name="label_15">
+                 <property name="sizePolicy">
+                  <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+                   <horstretch>2</horstretch>
+                   <verstretch>0</verstretch>
+                  </sizepolicy>
+                 </property>
+                 <property name="text">
+                  <string>@gmail.com</string>
+                 </property>
+                </widget>
+               </item>
+              </layout>
+             </item>
+             <item>
+              <layout class="QHBoxLayout" name="horizontalLayout_21">
+               <item>
+                <widget class="QLabel" name="label_13">
+                 <property name="sizePolicy">
+                  <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+                   <horstretch>1</horstretch>
+                   <verstretch>0</verstretch>
+                  </sizepolicy>
+                 </property>
+                 <property name="text">
+                  <string>비밀번호</string>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QLineEdit" name="lineEdit_email_passwd">
+                 <property name="sizePolicy">
+                  <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+                   <horstretch>3</horstretch>
+                   <verstretch>0</verstretch>
+                  </sizepolicy>
+                 </property>
+                </widget>
+               </item>
+              </layout>
+             </item>
+             <item>
+              <layout class="QHBoxLayout" name="horizontalLayout_22">
+               <item>
+                <widget class="QLabel" name="label_14">
+                 <property name="sizePolicy">
+                  <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+                   <horstretch>1</horstretch>
+                   <verstretch>0</verstretch>
+                  </sizepolicy>
+                 </property>
+                 <property name="text">
+                  <string>수신 이메일</string>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QLineEdit" name="lineEdit_email_receiver">
+                 <property name="sizePolicy">
+                  <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+                   <horstretch>3</horstretch>
+                   <verstretch>0</verstretch>
+                  </sizepolicy>
+                 </property>
+                 <property name="inputMethodHints">
+                  <set>Qt::ImhEmailCharactersOnly</set>
+                 </property>
+                </widget>
+               </item>
+              </layout>
+             </item>
+             <item>
+              <widget class="QPushButton" name="pushButton_email_test">
+               <property name="text">
+                <string>테스트</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <spacer name="verticalSpacer_6">
+               <property name="orientation">
+                <enum>Qt::Vertical</enum>
+               </property>
+               <property name="sizeHint" stdset="0">
+                <size>
+                 <width>20</width>
+                 <height>40</height>
+                </size>
+               </property>
+              </spacer>
+             </item>
+             <item>
+              <widget class="QPushButton" name="pushButton_email_save">
+               <property name="text">
+                <string>저장</string>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </widget>
+          </item>
+          <item>
+           <widget class="QGroupBox" name="groupBox_9">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+              <horstretch>0</horstretch>
+              <verstretch>1</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="title">
+             <string>발송 기록</string>
+            </property>
+            <layout class="QGridLayout" name="gridLayout_2">
+             <property name="leftMargin">
+              <number>0</number>
+             </property>
+             <property name="topMargin">
+              <number>0</number>
+             </property>
+             <property name="rightMargin">
+              <number>0</number>
+             </property>
+             <property name="bottomMargin">
+              <number>0</number>
+             </property>
+             <item row="0" column="0">
+              <widget class="QTableWidget" name="tableWidget_email_try">
+               <property name="editTriggers">
+                <set>QAbstractItemView::NoEditTriggers</set>
+               </property>
+               <attribute name="horizontalHeaderStretchLastSection">
+                <bool>true</bool>
+               </attribute>
+               <column>
+                <property name="text">
+                 <string>시간</string>
+                </property>
+               </column>
+               <column>
+                <property name="text">
+                 <string>메세지</string>
+                </property>
+               </column>
+              </widget>
+             </item>
+            </layout>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+    </widget>
+   </item>
+   <item>
+    <widget class="QGroupBox" name="groupBox">
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+       <horstretch>0</horstretch>
+       <verstretch>1</verstretch>
+      </sizepolicy>
+     </property>
+     <property name="title">
+      <string>에러 로그</string>
+     </property>
+     <layout class="QHBoxLayout" name="horizontalLayout">
+      <property name="leftMargin">
+       <number>0</number>
+      </property>
+      <property name="topMargin">
+       <number>0</number>
+      </property>
+      <property name="rightMargin">
+       <number>0</number>
+      </property>
+      <property name="bottomMargin">
+       <number>0</number>
+      </property>
+      <item>
+       <widget class="QTableWidget" name="tableWidget_error_log">
+        <property name="editTriggers">
+         <set>QAbstractItemView::NoEditTriggers</set>
+        </property>
+        <attribute name="horizontalHeaderStretchLastSection">
+         <bool>true</bool>
+        </attribute>
+        <attribute name="verticalHeaderStretchLastSection">
+         <bool>false</bool>
+        </attribute>
+        <column>
+         <property name="text">
+          <string>시간</string>
+         </property>
+        </column>
+        <column>
+         <property name="text">
+          <string>타입</string>
+         </property>
+        </column>
+        <column>
+         <property name="text">
+          <string>상세 정보</string>
+         </property>
+        </column>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+   </item>
+  </layout>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
