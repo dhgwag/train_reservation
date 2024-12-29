@@ -12,7 +12,7 @@ from train.srt import SRT
 
 from util import *
 
-version = '5.0.0'
+version = '6.0.0'
 
 
 class SrtThread(QThread):
